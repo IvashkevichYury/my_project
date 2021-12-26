@@ -14,7 +14,7 @@ public class UserPage {
             String answer = scannerStr.nextLine();
             if (answer.equalsIgnoreCase("Y")) {
 
-                System.out.println("Blinds costs " + costBlinds.calculateCostOfBlinds(requestData(), priceCatalog.colorMap) + " rubles.\n");
+                System.out.println("Blind costs " + costBlinds.calculateCostOfBlinds(requestData(), priceCatalog.colorMap) + " rubles.\n");
             } else if (answer.equalsIgnoreCase("N")) {
                 System.out.println("Calculation finished.");
                 scannerStr.close();
@@ -24,14 +24,14 @@ public class UserPage {
         }
     }
 
-    public Blinds requestData() {
-        Blinds blinds = new Blinds();
+    public Blind requestData() {
+        Blind blind = new Blind();
         System.out.println("Enter the width of the blind in mm: ");
-        blinds.setBlindsWidth(scanner.nextDouble() / 1000);
+        blind.setBlindsWidth(scanner.nextDouble() / 1000);
         System.out.println("Enter the height of the blind in mm:");
-        blinds.setBlindsHeight(scanner.nextDouble() / 1000);
-        System.out.println("Enter the color number of the blinds (201, 202): ");
-        blinds.setColor(scanner.nextInt());
-        return blinds;
+        blind.setBlindsHeight(scanner.nextDouble() / 1000);
+        System.out.println("Enter the color number of the blind (201, 202): ");
+        blind.setColor(scanner.nextInt());
+        return blind;
     }
 }

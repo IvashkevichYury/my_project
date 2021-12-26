@@ -1,4 +1,4 @@
-public class Blinds {
+public class Blind {
 
     private double blindsWidth;
     private double blindsHeight;

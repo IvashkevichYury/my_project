@@ -1,6 +1,6 @@
 public class AreaBlinds {
 
-    double findAreaBlinds(Blinds blinds) {
-        return blinds.getBlindsWidth() * blinds.getBlindsHeight();
+    double findAreaBlinds(Blind blind) {
+        return blind.getBlindsWidth() * blind.getBlindsHeight();
     }
 }

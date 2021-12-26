@@ -6,9 +6,9 @@ public class CostBlinds {
 
     AreaBlinds areaBlinds = new AreaBlinds();
 
-    public long calculateCostOfBlinds(Blinds blinds, Map<Integer, Double> priceForColors) {
+    public long calculateCostOfBlinds(Blind blind, Map<Integer, Double> priceForColors) {
 
-        long cost = Math.round(areaBlinds.findAreaBlinds(blinds) * priceForColors.get(blinds.getColor())
+        long cost = Math.round(areaBlinds.findAreaBlinds(blind) * priceForColors.get(blind.getColor())
                 * dollarExchangeRate);
 
         return cost;
