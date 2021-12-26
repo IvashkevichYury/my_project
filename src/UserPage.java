@@ -3,15 +3,16 @@ import java.util.Scanner;
 public class UserPage {
 
     CostBlinds costBlinds = new CostBlinds();
+    Data data = new Data();
 
     public void showBlindCost() {
-
+        data.initDate();
         while (true) {
             System.out.println("Would you like to calculate the cost of blinds?\nIf yes - enter Y, if no - enter N");
             String answer = requestString();
             if (answer.equalsIgnoreCase("Y")) {
 
-                System.out.println("Blinds costs " + costBlinds.calculateCostOfBlinds(requestData()) + " rubles.\n");
+                System.out.println("Blinds costs " + costBlinds.calculateCostOfBlinds(requestData(), data.colorMap) + " rubles.\n");
             } else if (answer.equalsIgnoreCase("N")) {
                 System.out.println("Calculation finished.");
                 break;
