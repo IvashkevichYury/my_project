@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class Data {
+public class PriceCatalog {
 
     Map<Integer, Double> colorMap = new HashMap<>();
 
