@@ -1,16 +1,30 @@
 public class Blinds {
 
-    private static final double dollarExchangeRate = 15;
-    private final Data data = new Data();
+    private double blindsWidth;
+    private double blindsHeight;
+    private int color;
 
-    public void calculateCostOfBlinds(double blindsWidth, double blindsHeight, int color) {
-
-        long cost = Math.round(findAreaBlinds(blindsWidth, blindsHeight) *
-                data.determineCostOfSelectedColorOfBlinds(color) * dollarExchangeRate);
-        System.out.println("Blinds costs " + cost + " rubles.\n");
+    public double getBlindsWidth() {
+        return blindsWidth;
     }
 
-    private double findAreaBlinds(double blindsWidth, double blindsHeight) {
-        return blindsWidth * blindsHeight;
+    public void setBlindsWidth(double blindsWidth) {
+        this.blindsWidth = blindsWidth;
+    }
+
+    public double getBlindsHeight() {
+        return blindsHeight;
+    }
+
+    public void setBlindsHeight(double blindsHeight) {
+        this.blindsHeight = blindsHeight;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 }

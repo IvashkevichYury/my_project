@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class Data {
 
-    private Map<Integer, Double> colorMap = new HashMap<>();
+    Map<Integer, Double> colorMap = new HashMap<>();
     private double priceForColors;
 
     public double determineCostOfSelectedColorOfBlinds(int color) {
@@ -17,8 +17,9 @@ public class Data {
         return priceForColors;
     }
 
-    private void initDate() {
+    public Map<Integer, Double> initDate() {
         colorMap.put(201, 8.8);
         colorMap.put(202, 10.4);
+        return colorMap;
     }
 }
