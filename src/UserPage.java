@@ -14,7 +14,8 @@ public class UserPage {
             String answer = scannerStr.nextLine();
             if (answer.equalsIgnoreCase("Y")) {
 
-                System.out.println("Blind costs " + costBlinds.calculateCostOfBlinds(requestData(), priceCatalog.colorMap) + " rubles.\n");
+                System.out.println("Blind costs " +
+                        costBlinds.calculateCostOfBlinds(requestData(), priceCatalog.getColorMap()) + " rubles.\n");
             } else if (answer.equalsIgnoreCase("N")) {
                 System.out.println("Calculation finished.");
                 scannerStr.close();
