@@ -8,7 +8,7 @@ public class HorizontalBlindService {
 
     private static final double dollarExchangeRate = 15;
 
-    private double findAreaBlinds(Blind blind) {
+    private int findAreaBlinds(Blind blind) {
         return blind.getBlindsWidth() / 1000 * blind.getBlindsHeight() / 1000;
     }
 

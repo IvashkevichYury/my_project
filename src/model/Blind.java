@@ -2,25 +2,25 @@ package model;
 
 public class Blind {
 
-    private double blindsWidth;
-    private double blindsHeight;
+    private int blindsWidth;
+    private int blindsHeight;
     private int color;
     private double areaBlinds;
     private long blindsCost;
 
-    public double getBlindsWidth() {
+    public int getBlindsWidth() {
         return blindsWidth;
     }
 
-    public void setBlindsWidth(double blindsWidth) {
+    public void setBlindsWidth(int blindsWidth) {
         this.blindsWidth = blindsWidth;
     }
 
-    public double getBlindsHeight() {
+    public int getBlindsHeight() {
         return blindsHeight;
     }
 
-    public void setBlindsHeight(double blindsHeight) {
+    public void setBlindsHeight(int blindsHeight) {
         this.blindsHeight = blindsHeight;
     }
 

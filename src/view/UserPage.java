@@ -33,9 +33,9 @@ public class UserPage {
     public Blind requestData() {
         Blind blind = new Blind();
         System.out.println("Enter the width of the blind in mm: ");
-        blind.setBlindsWidth(scanner.nextDouble());
+        blind.setBlindsWidth(scanner.nextInt());
         System.out.println("Enter the height of the blind in mm:");
-        blind.setBlindsHeight(scanner.nextDouble());
+        blind.setBlindsHeight(scanner.nextInt());
         System.out.println("Enter the color number of the blind (201, 202): ");
         blind.setColor(scanner.nextInt());
         return blind;
