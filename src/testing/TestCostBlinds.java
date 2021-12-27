@@ -1,7 +1,7 @@
 package testing;
 
 import org.junit.jupiter.api.Test;
-import service.Blind;
+import model.Blind;
 import service.CostBlinds;
 
 import java.util.HashMap;

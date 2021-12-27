@@ -1,5 +1,7 @@
 package service;
 
+import model.Blind;
+
 import java.util.Map;
 
 public class CostBlinds {
