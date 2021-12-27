@@ -7,7 +7,7 @@ public class CostBlinds {
     private static final double dollarExchangeRate = 15;
 
     private double findAreaBlinds(Blind blind) {
-        return blind.getBlindsWidth() * blind.getBlindsHeight();
+        return blind.getBlindsWidth() / 1000 * blind.getBlindsHeight() / 1000;
     }
 
     private double findPriceColor(Blind blind, Map<Integer, Double> priceForColors) {
