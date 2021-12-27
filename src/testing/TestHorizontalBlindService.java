@@ -2,16 +2,16 @@ package testing;
 
 import org.junit.jupiter.api.Test;
 import model.Blind;
-import service.CostBlinds;
+import service.HorizontalBlindService;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestCostBlinds {
+public class TestHorizontalBlindService {
 
-    CostBlinds costBlinds = new CostBlinds();
+    HorizontalBlindService horizontalBlindService = new HorizontalBlindService();
 
     @Test
     void testFindAreaBlinds() {
@@ -22,7 +22,7 @@ public class TestCostBlinds {
         Map<Integer, Double> map = new HashMap<>();
         map.put(201, 8.8);
         map.put(202, 10.4);
-        assertEquals(1056, costBlinds.calculateCostOfBlinds(blind, map));
+        assertEquals(1056, horizontalBlindService.calculateCostOfBlinds(blind, map));
 
     }
 }

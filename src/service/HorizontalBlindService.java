@@ -4,7 +4,7 @@ import model.Blind;
 
 import java.util.Map;
 
-public class CostBlinds {
+public class HorizontalBlindService {
 
     private static final double dollarExchangeRate = 15;
 

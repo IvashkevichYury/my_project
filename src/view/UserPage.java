@@ -1,14 +1,14 @@
 package view;
 
 import model.Blind;
-import service.CostBlinds;
+import service.HorizontalBlindService;
 import service.PriceCatalog;
 
 import java.util.Scanner;
 
 public class UserPage {
 
-    CostBlinds costBlinds = new CostBlinds();
+    HorizontalBlindService horizontalBlindService = new HorizontalBlindService();
     PriceCatalog priceCatalog = new PriceCatalog();
     Scanner scanner = new Scanner(System.in);
     Scanner scannerStr = new Scanner(System.in);
@@ -20,7 +20,7 @@ public class UserPage {
             String answer = scannerStr.nextLine();
             if (answer.equalsIgnoreCase("Y")) {
                 System.out.println("model.Blind costs " +
-                        costBlinds.calculateCostOfBlinds(requestData(), priceCatalog.getColorMap()) + " rubles.\n");
+                        horizontalBlindService.calculateCostOfBlinds(requestData(), priceCatalog.getColorMap()) + " rubles.\n");
             } else if (answer.equalsIgnoreCase("N")) {
                 System.out.println("Calculation finished.");
                 scannerStr.close();
