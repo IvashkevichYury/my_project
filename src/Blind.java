@@ -4,7 +4,7 @@ public class Blind {
     private double blindsHeight;
     private int color;
     private double areaBlinds;
-    private long priceBlinds;
+    private long blindsCost;
 
     public double getBlindsWidth() {
         return blindsWidth;
@@ -38,11 +38,11 @@ public class Blind {
         this.areaBlinds = areaBlinds;
     }
 
-    public long getPriceBlinds() {
-        return priceBlinds;
+    public long getBlindsCost() {
+        return blindsCost;
     }
 
-    public void setPriceBlinds(long priceBlinds) {
-        this.priceBlinds = priceBlinds;
+    public void setBlindsCost(long blindsCost) {
+        this.blindsCost = blindsCost;
     }
 }
