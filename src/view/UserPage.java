@@ -12,6 +12,7 @@ public class UserPage {
     PriceCatalog priceCatalog = new PriceCatalog();
     Scanner scanner = new Scanner(System.in);
     Scanner scannerStr = new Scanner(System.in);
+    long costBlinds;
 
     public void showBlindCost() {
         priceCatalog.initDate();
@@ -19,8 +20,8 @@ public class UserPage {
             System.out.println("Would you like to calculate the cost of blinds?\nIf yes - enter Y, if no - enter N");
             String answer = scannerStr.nextLine();
             if (answer.equalsIgnoreCase("Y")) {
-                System.out.println("model.Blind costs " +
-                        horizontalBlindService.calculateCostOfBlinds(requestData(), priceCatalog.getColorMap()) + " rubles.\n");
+                costBlinds = horizontalBlindService.calculateCostOfBlinds(requestData(), priceCatalog);
+                System.out.println("model.Blind costs " + costBlinds + " rubles.\n");
             } else if (answer.equalsIgnoreCase("N")) {
                 System.out.println("Calculation finished.");
                 scannerStr.close();
