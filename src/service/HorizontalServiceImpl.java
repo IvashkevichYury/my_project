@@ -2,7 +2,7 @@ package service;
 
 import model.Blind;
 
-public class HorizontalBlindServiceImpl implements HorizontalBlindService{
+public class HorizontalServiceImpl implements HorizontalService {
 
     private static final double dollarExchangeRate = 15;
     private double areaBlind;
@@ -17,8 +17,8 @@ public class HorizontalBlindServiceImpl implements HorizontalBlindService{
     }
 
     @Override
-    public long calculateCostOfBlinds(Blind blind, PriceCatalog priceCatalogImpl) {
-        areaBlind = calculateAreaOfBlinds(blind.getBlindsWidth(), blind.getBlindsHeight());
+    public long calculateCost(Blind blind, PriceCatalog priceCatalogImpl) {
+        areaBlind = calculateAreaOfBlinds(blind.getWidth(), blind.getHeight());
         double priceColor = priceCatalogImpl.getColorPrice(blind.getColor());
         return Math.round(areaBlind * priceColor * dollarExchangeRate);
     }
