@@ -3,7 +3,7 @@ package service;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PriceCatalogImpl implements PriceCatalog{
+public class PriceCatalogImpl implements PriceCatalog {
 
     private final Map<Integer, Double> colorMap = new HashMap<>();
 
