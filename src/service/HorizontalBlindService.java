@@ -2,22 +2,13 @@ package service;
 
 import model.Blind;
 
-import java.util.Map;
-
 public class HorizontalBlindService {
 
     private static final double dollarExchangeRate = 15;
 
-    private int findAreaBlinds(Blind blind) {
-        return blind.getBlindsWidth() / 1000 * blind.getBlindsHeight() / 1000;
-    }
-
-    private double findPriceColor(Blind blind, Map<Integer, Double> priceForColors) {
-        return priceForColors.get(blind.getColor());
-    }
-
-    public long calculateCostOfBlinds(Blind blind, Map<Integer, Double> priceForColors) {
-
-        return Math.round(findAreaBlinds(blind) * findPriceColor(blind, priceForColors) * dollarExchangeRate);
+    public long calculateCostOfBlinds(Blind blind, PriceCatalog priceCatalog) {
+        int areaBlind = blind.getBlindsWidth() / 1000 * blind.getBlindsHeight() / 1000;
+        double priceColor = priceCatalog.getColorPrice(blind.getColor());
+        return Math.round(areaBlind * priceColor * dollarExchangeRate);
     }
 }
