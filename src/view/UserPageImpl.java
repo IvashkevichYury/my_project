@@ -1,6 +1,7 @@
 package view;
 
 import model.Blind;
+import model.BlindHorizontal;
 import service.HorizontalService;
 import service.HorizontalServiceImpl;
 import service.PriceCatalog;
@@ -10,9 +11,13 @@ import java.util.Scanner;
 
 public class UserPageImpl implements UserPage {
 
-    Blind blind = new Blind();
+    Blind blindHorizontal = new BlindHorizontal();
     PriceCatalog priceCatalogImpl = new PriceCatalogImpl();
     HorizontalService horizontalServiceImpl;
+
+    public UserPageImpl(HorizontalService horizontalServiceImpl) {
+        this.horizontalServiceImpl = horizontalServiceImpl;
+    }
 
     Scanner scanner = new Scanner(System.in);
     Scanner scannerStr = new Scanner(System.in);
@@ -27,7 +32,7 @@ public class UserPageImpl implements UserPage {
             if (answer.equalsIgnoreCase("Y")) {
                 horizontalServiceImpl = new HorizontalServiceImpl(requestData(), priceCatalogImpl);
                 costBlinds = horizontalServiceImpl.calculateCost();
-                System.out.println("model.Blind costs " + costBlinds + " rubles.\n");
+                System.out.println("model.BlindHorizontal costs " + costBlinds + " rubles.\n");
             } else if (answer.equalsIgnoreCase("N")) {
                 System.out.println("Calculation finished.");
                 scannerStr.close();
@@ -39,13 +44,13 @@ public class UserPageImpl implements UserPage {
 
     private Blind requestData() {
 
-        System.out.println("Enter the width of the blind in mm: ");
-        blind.setWidth(scanner.nextInt());
-        System.out.println("Enter the height of the blind in mm:");
-        blind.setHeight(scanner.nextInt());
-        System.out.println("Enter the color number of the blind (201, 202): ");
-        blind.setColor(scanner.nextInt());
-        return blind;
+        System.out.println("Enter the width of the blindHorizontal in mm: ");
+        blindHorizontal.setWidth(scanner.nextInt());
+        System.out.println("Enter the height of the blindHorizontal in mm:");
+        blindHorizontal.setHeight(scanner.nextInt());
+        System.out.println("Enter the color number of the blindHorizontal (201, 202): ");
+        blindHorizontal.setColor(scanner.nextInt());
+        return blindHorizontal;
     }
 
 }

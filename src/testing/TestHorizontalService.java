@@ -1,13 +1,5 @@
 package testing;
 
-import org.junit.jupiter.api.Test;
-import model.Blind;
-import service.HorizontalServiceImpl;
-import service.PriceCatalogImpl;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestHorizontalService {
@@ -16,7 +8,7 @@ public class TestHorizontalService {
 //
 //    @Test
 //    void testCalculateCostOfBlinds() {
-//        Blind blind = new Blind();
+//        BlindHorizontal blind = new BlindHorizontal();
 //        PriceCatalogImpl catalog = new PriceCatalogImpl();
 //        catalog.initDate();
 //        blind.setWidth(2000);

@@ -1,50 +1,15 @@
 package model;
 
-public class Blind {
+public interface Blind {
 
-    private int width;
-    private int height;
-    private int color;
-    private double areaBlinds;
-    private long blindsCost;
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
-    }
-
-    public double getAreaBlinds() {
-        return areaBlinds;
-    }
-
-    public void setAreaBlinds(double areaBlinds) {
-        this.areaBlinds = areaBlinds;
-    }
-
-    public long getBlindsCost() {
-        return blindsCost;
-    }
-
-    public void setBlindsCost(long blindsCost) {
-        this.blindsCost = blindsCost;
-    }
+    int getWidth();
+    void setWidth(int width);
+    int getHeight();
+    void setHeight(int height);
+    int getColor();
+    void setColor(int color);
+    double getAreaBlinds();
+    void setAreaBlinds(double areaBlinds);
+    long getBlindsCost();
+    void setBlindsCost(long blindsCost);
 }

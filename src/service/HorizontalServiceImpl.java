@@ -1,17 +1,18 @@
 package service;
 
 import model.Blind;
+import model.BlindHorizontal;
 
 public class HorizontalServiceImpl implements HorizontalService {
 
     private static final double dollarExchangeRate = 15;
     private double areaBlind;
 
-    Blind blind;
+    Blind blindHorizontal;
     PriceCatalog priceCatalog;
 
-    public HorizontalServiceImpl(Blind blind, PriceCatalog priceCatalog) {
-        this.blind = blind;
+    public HorizontalServiceImpl(Blind blindHorizontal, PriceCatalog priceCatalog) {
+        this.blindHorizontal = blindHorizontal;
         this.priceCatalog = priceCatalog;
     }
 
@@ -25,8 +26,8 @@ public class HorizontalServiceImpl implements HorizontalService {
 
     @Override
     public long calculateCost() {
-        areaBlind = calculateAreaOfBlinds(blind.getWidth(), blind.getHeight());
-        double priceColor = priceCatalog.getColorPrice(blind.getColor());
+        areaBlind = calculateAreaOfBlinds(blindHorizontal.getWidth(), blindHorizontal.getHeight());
+        double priceColor = priceCatalog.getColorPrice(blindHorizontal.getColor());
         return Math.round(areaBlind * priceColor * dollarExchangeRate);
     }
 }
