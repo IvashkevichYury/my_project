@@ -1,5 +1,6 @@
 package view;
 
+import model.Blind;
 import service.HorizontalService;
 import service.HorizontalServiceImpl;
 import service.PriceCatalog;
@@ -9,7 +10,7 @@ import java.util.Scanner;
 
 public class UserPageImpl implements UserPage {
 
-    EnterData enterData = new EnterDataImpl();
+    Blind blind = new Blind();
     PriceCatalog priceCatalogImpl = new PriceCatalogImpl();
     HorizontalService horizontalServiceImpl;
 
@@ -24,7 +25,7 @@ public class UserPageImpl implements UserPage {
             System.out.println("Would you like to calculate the cost of blinds?\nIf yes - enter Y, if no - enter N");
             String answer = scannerStr.nextLine();
             if (answer.equalsIgnoreCase("Y")) {
-                horizontalServiceImpl = new HorizontalServiceImpl(enterData.requestData(), priceCatalogImpl);
+                horizontalServiceImpl = new HorizontalServiceImpl(requestData(), priceCatalogImpl);
                 costBlinds = horizontalServiceImpl.calculateCost();
                 System.out.println("model.Blind costs " + costBlinds + " rubles.\n");
             } else if (answer.equalsIgnoreCase("N")) {
@@ -34,6 +35,17 @@ public class UserPageImpl implements UserPage {
                 break;
             }
         }
+    }
+
+    private Blind requestData() {
+
+        System.out.println("Enter the width of the blind in mm: ");
+        blind.setWidth(scanner.nextInt());
+        System.out.println("Enter the height of the blind in mm:");
+        blind.setHeight(scanner.nextInt());
+        System.out.println("Enter the color number of the blind (201, 202): ");
+        blind.setColor(scanner.nextInt());
+        return blind;
     }
 
 }
