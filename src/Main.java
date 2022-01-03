@@ -1,4 +1,3 @@
-import model.Blind;
 import model.BlindHorizontal;
 import service.HorizontalService;
 import service.HorizontalServiceImpl;
@@ -10,10 +9,10 @@ import view.UserPageImpl;
 public class Main {
     public static void main(String[] args) {
 
-        Blind blindHorizontal = new BlindHorizontal();
+        BlindHorizontal blindHorizontal = new BlindHorizontal();
         PriceCatalog priceCatalog = new PriceCatalogImpl();
         HorizontalService horizontalService = new HorizontalServiceImpl(blindHorizontal, priceCatalog);
-        UserPage userPageImpl = new UserPageImpl(horizontalService);
+        UserPage userPageImpl = new UserPageImpl(horizontalService, priceCatalog);
 
         userPageImpl.showBlindCost();
 

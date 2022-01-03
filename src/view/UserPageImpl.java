@@ -1,27 +1,24 @@
 package view;
 
-import model.Blind;
 import model.BlindHorizontal;
 import service.HorizontalService;
 import service.HorizontalServiceImpl;
 import service.PriceCatalog;
-import service.PriceCatalogImpl;
 
 import java.util.Scanner;
 
 public class UserPageImpl implements UserPage {
 
-    Blind blindHorizontal = new BlindHorizontal();
-    PriceCatalog priceCatalogImpl = new PriceCatalogImpl();
+    PriceCatalog priceCatalogImpl;
     HorizontalService horizontalServiceImpl;
 
-    public UserPageImpl(HorizontalService horizontalServiceImpl) {
+    public UserPageImpl(HorizontalService horizontalServiceImpl, PriceCatalog priceCatalogImpl) {
         this.horizontalServiceImpl = horizontalServiceImpl;
+        this.priceCatalogImpl = priceCatalogImpl;
     }
 
     Scanner scanner = new Scanner(System.in);
     Scanner scannerStr = new Scanner(System.in);
-    long costBlinds;
 
     @Override
     public void showBlindCost() {
@@ -31,7 +28,7 @@ public class UserPageImpl implements UserPage {
             String answer = scannerStr.nextLine();
             if (answer.equalsIgnoreCase("Y")) {
                 horizontalServiceImpl = new HorizontalServiceImpl(requestData(), priceCatalogImpl);
-                costBlinds = horizontalServiceImpl.calculateCost();
+                long costBlinds = horizontalServiceImpl.calculateCost();
                 System.out.println("model.BlindHorizontal costs " + costBlinds + " rubles.\n");
             } else if (answer.equalsIgnoreCase("N")) {
                 System.out.println("Calculation finished.");
@@ -42,8 +39,8 @@ public class UserPageImpl implements UserPage {
         }
     }
 
-    private Blind requestData() {
-
+    private BlindHorizontal requestData() {
+        BlindHorizontal blindHorizontal = new BlindHorizontal();
         System.out.println("Enter the width of the blindHorizontal in mm: ");
         blindHorizontal.setWidth(scanner.nextInt());
         System.out.println("Enter the height of the blindHorizontal in mm:");
