@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class UserPageImpl implements UserPage {
 
-    PriceCatalog priceCatalogImpl;
-    HorizontalService horizontalServiceImpl;
+    private PriceCatalog priceCatalogImpl;
+    private HorizontalService horizontalServiceImpl;
 
     public UserPageImpl(HorizontalService horizontalServiceImpl, PriceCatalog priceCatalogImpl) {
         this.horizontalServiceImpl = horizontalServiceImpl;
@@ -27,9 +27,8 @@ public class UserPageImpl implements UserPage {
             System.out.println("Would you like to calculate the cost of blinds?\nIf yes - enter Y, if no - enter N");
             String answer = scannerStr.nextLine();
             if (answer.equalsIgnoreCase("Y")) {
-                horizontalServiceImpl = new HorizontalServiceImpl(requestData(), priceCatalogImpl);
-                long costBlinds = horizontalServiceImpl.calculateCost();
-                System.out.println("model.BlindHorizontal costs " + costBlinds + " rubles.\n");
+                long costBlinds = horizontalServiceImpl.calculateCost(requestData());
+                System.out.println("Horizontal blind costs " + costBlinds + " rubles.\n");
             } else if (answer.equalsIgnoreCase("N")) {
                 System.out.println("Calculation finished.");
                 scannerStr.close();

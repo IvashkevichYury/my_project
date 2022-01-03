@@ -16,16 +16,13 @@ public class HorizontalServiceImpl implements HorizontalService {
 
     private double calculateAreaOfBlinds(int width, int height) {
 
-        if ((width / 1000.00) * (height / 1000.00) < 0.75) {
-            return 0.75;
-        } else {
-            return (width / 1000.00) * (height / 1000.00);
-        }
+        return Math.max((width / 1000.00) * (height / 1000.00), 0.75);
     }
 
     @Override
-    public long calculateCost() {
+    public long calculateCost(BlindHorizontal blindHorizontal) {
         double area = calculateAreaOfBlinds(blindHorizontal.getWidth(), blindHorizontal.getHeight());
+        blindHorizontal.setAreaBlinds(area);
         double priceColor = priceCatalog.getColorPrice(blindHorizontal.getColor());
         return Math.round(area * priceColor * dollarExchangeRate);
     }

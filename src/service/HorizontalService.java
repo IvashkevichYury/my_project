@@ -1,6 +1,8 @@
 package service;
 
+import model.BlindHorizontal;
+
 public interface HorizontalService {
 
-    long calculateCost();
+    long calculateCost(BlindHorizontal blindHorizontal);
 }
