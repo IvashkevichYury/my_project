@@ -5,7 +5,6 @@ import model.BlindHorizontal;
 public class HorizontalServiceImpl implements HorizontalService {
 
     private static final double dollarExchangeRate = 15;
-
     private BlindHorizontal blindHorizontal;
     private PriceCatalog priceCatalog;
 
@@ -15,8 +14,11 @@ public class HorizontalServiceImpl implements HorizontalService {
     }
 
     private double calculateAreaOfBlinds(int width, int height) {
-
-        return Math.max((width / 1000.00) * (height / 1000.00), 0.75);
+        if (width < 250 || width > 2700 || height < 500 || height > 3000) {
+            throw new IllegalArgumentException("invalid input data");
+        } else {
+            return Math.max((width / 1000.00) * (height / 1000.00), 0.75);
+        }
     }
 
     @Override

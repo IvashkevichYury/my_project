@@ -6,5 +6,5 @@ public interface PriceCatalog {
 
     Map<Integer, Double> initDate();
 
-    double getColorPrice(int color);
+    Double getColorPrice(int color);
 }

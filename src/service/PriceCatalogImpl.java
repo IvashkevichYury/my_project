@@ -6,6 +6,7 @@ import java.util.Map;
 public class PriceCatalogImpl implements PriceCatalog {
 
     private final Map<Integer, Double> colorMap = new HashMap<>();
+    Double colorPrice;
 
     @Override
     public Map<Integer, Double> initDate() {
@@ -16,7 +17,12 @@ public class PriceCatalogImpl implements PriceCatalog {
     }
 
     @Override
-    public double getColorPrice(int color) {
-        return colorMap.get(color);
+    public Double getColorPrice(int color) {
+
+        colorPrice = colorMap.get(color);
+        if (colorPrice == null) {
+            throw new IllegalArgumentException("invalid input data: color");
+        }
+        return colorPrice;
     }
 }
