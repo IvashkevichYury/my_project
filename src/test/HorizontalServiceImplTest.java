@@ -65,4 +65,22 @@ class HorizontalServiceImplTest {
         String expectedMessage = "color must be 201 or 202";
         assertEquals(expectedMessage, actualException.getMessage());
     }
+
+    @ParameterizedTest
+    @CsvSource({"1500, 3000, 201, 4.5", "500, 2000, 202, 1"})
+    void calculateCost_getWidthAndHeight_ShouldReturnAreaOfBlindMoreThan075(int width, int height, int color, double expected) {
+        blind = new BlindHorizontal(width, height, color);
+        horizontalBlindServiceImpl.calculateCost(blind);
+        double actual = blind.getAreaBlinds();
+        assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"500, 1000, 201, 0.75", "350, 2000, 202, 0.75"})
+    void calculateCost_getWidthAndHeight_ShouldReturnAreaOfBlindLessThan075(int width, int height, int color, double expected) {
+        blind = new BlindHorizontal(width, height, color);
+        horizontalBlindServiceImpl.calculateCost(blind);
+        double actual = blind.getAreaBlinds();
+        assertEquals(expected, actual);
+    }
 }
