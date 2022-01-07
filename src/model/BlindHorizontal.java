@@ -8,6 +8,15 @@ public class BlindHorizontal {
     private double areaBlinds;
     private long blindsCost;
 
+    public BlindHorizontal() {
+    }
+
+    public BlindHorizontal(int width, int height, int color) {
+        this.width = width;
+        this.height = height;
+        this.color = color;
+    }
+
     public int getWidth() {
         return width;
     }
