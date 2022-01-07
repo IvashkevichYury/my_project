@@ -50,13 +50,19 @@ class HorizontalServiceImplTest {
     @CsvSource({"1000, 0, 201", "0, 1000, 202", "-1000, 2000, 201", "500, -800, 202"})
     void calculateCost_getZeroOrNegativeSizeOfBlind_ShouldThrowIllegalArgumentException(int width, int height, int color) {
         blind = new BlindHorizontal(width, height, color);
-        assertThrows(IllegalArgumentException.class, () -> horizontalBlindServiceImpl.calculateCost(blind));
+        Exception actualException = assertThrows(IllegalArgumentException.class,
+                () -> horizontalBlindServiceImpl.calculateCost(blind));
+        String expectedMessage = "width must be from 250 to 2700 and height must be from 500 to 3000";
+        assertEquals(expectedMessage, actualException.getMessage());
     }
 
     @ParameterizedTest
-    @CsvSource({"1000, 200, 200", "500, 1000, 0", "500, 1500, -201"})
+    @CsvSource({"1000, 2000, 200", "500, 1000, 0", "500, 1500, -201"})
     void calculateCost_getWrongColorOfBlind_ShouldThrowIllegalArgumentException(int width, int height, int color) {
         blind = new BlindHorizontal(width, height, color);
-        assertThrows(IllegalArgumentException.class, () -> horizontalBlindServiceImpl.calculateCost(blind));
+        Exception actualException = assertThrows(IllegalArgumentException.class,
+                () -> horizontalBlindServiceImpl.calculateCost(blind));
+        String expectedMessage = "color must be 201 or 202";
+        assertEquals(expectedMessage, actualException.getMessage());
     }
 }
