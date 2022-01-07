@@ -15,7 +15,7 @@ public class HorizontalServiceImpl implements HorizontalService {
 
     private double calculateAreaOfBlinds(int width, int height) {
         if (width < 250 || width > 2700 || height < 500 || height > 3000) {
-            throw new IllegalArgumentException("invalid input data");
+            throw new IllegalArgumentException("invalid input data: width or height");
         } else {
             return Math.max((width / 1000.00) * (height / 1000.00), 0.75);
         }
