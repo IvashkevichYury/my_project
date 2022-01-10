@@ -1,5 +1,3 @@
-package test;
-
 import model.BlindHorizontal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
