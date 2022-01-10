@@ -17,7 +17,7 @@ class HorizontalServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        catalog.initDate();
+        catalog.readFile();
     }
 
     @ParameterizedTest

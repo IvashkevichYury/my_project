@@ -2,7 +2,6 @@ package view;
 
 import model.BlindHorizontal;
 import service.HorizontalService;
-import service.HorizontalServiceImpl;
 import service.PriceCatalog;
 
 import java.util.Scanner;
@@ -22,7 +21,7 @@ public class UserPageImpl implements UserPage {
 
     @Override
     public void showBlindCost() {
-        priceCatalogImpl.initDate();
+        priceCatalogImpl.readFile();
         while (true) {
             System.out.println("Would you like to calculate the cost of blinds?\nIf yes - enter Y, if no - enter N");
             String answer = scannerStr.nextLine();
