@@ -2,22 +2,25 @@ import model.BlindHorizontal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import service.HorizontalService;
-import service.HorizontalServiceImpl;
-import service.PriceCatalog;
-import service.PriceCatalogImpl;
+import service.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class HorizontalServiceImplTest {
 
     BlindHorizontal blind;
-    PriceCatalog catalog = new PriceCatalogImpl();
+    DataReader dataReader = new DataReaderImpl();
+    PriceCatalog catalog = new PriceCatalogImpl(dataReader);
     HorizontalService horizontalBlindServiceImpl = new HorizontalServiceImpl(blind, catalog);
+    private final Map<Integer, Double> colorMap = new HashMap<>();
+    String fileName = ".\\\\src\\\\main\\\\resources\\\\horizontalBlindsPriceCatalog.csv";
 
     @BeforeEach
     void setUp() {
-        catalog.readFile();
+        dataReader.readFile(colorMap, fileName);
     }
 
     @ParameterizedTest
