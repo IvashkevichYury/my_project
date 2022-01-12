@@ -42,8 +42,8 @@ public class UserPageImpl implements UserPage {
         blindHorizontal.setWidth(scanner.nextInt());
         System.out.println("Enter the height of the blindHorizontal in mm:");
         blindHorizontal.setHeight(scanner.nextInt());
-        System.out.println("Enter the color number of the blindHorizontal (201, 202): ");
-        blindHorizontal.setColor(scanner.nextInt());
+        System.out.println("Enter the type number of the blindHorizontal (201, 202): ");
+        blindHorizontal.setType(scanner.nextInt());
         return blindHorizontal;
     }
 

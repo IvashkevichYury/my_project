@@ -2,5 +2,5 @@ package service;
 
 public interface PriceCatalog {
 
-    Double getColorPrice(int color);
+    Double getTypePrice(int type);
 }

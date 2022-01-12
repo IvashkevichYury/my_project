@@ -4,17 +4,17 @@ public class BlindHorizontal {
 
     private int width;
     private int height;
-    private int color;
+    private int type;
     private double areaBlinds;
     private long blindsCost;
 
     public BlindHorizontal() {
     }
 
-    public BlindHorizontal(int width, int height, int color) {
+    public BlindHorizontal(int width, int height, int type) {
         this.width = width;
         this.height = height;
-        this.color = color;
+        this.type = type;
     }
 
     public int getWidth() {
@@ -33,12 +33,12 @@ public class BlindHorizontal {
         this.height = height;
     }
 
-    public int getColor() {
-        return color;
+    public int getType() {
+        return type;
     }
 
-    public void setColor(int color) {
-        this.color = color;
+    public void setType(int type) {
+        this.type = type;
     }
 
     public double getAreaBlinds() {
