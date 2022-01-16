@@ -62,7 +62,6 @@ public class BlindHorizontal {
         return "Horizontal blind: " +
                 "width=" + width +
                 ", height=" + height +
-                ", color=" + color +
-                ", blindsCost=" + blindsCost;
+                ", color=" + color + ", ";
     }
 }

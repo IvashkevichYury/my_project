@@ -91,6 +91,6 @@ public class BlindVertical {
                 ", height=" + height +
                 ", type=" + type +
                 ", color=" + color +
-                ", mountType=" + mountType;
+                ", mountType=" + mountType + ", ";
     }
 }

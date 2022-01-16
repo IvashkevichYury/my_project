@@ -2,15 +2,18 @@ package view;
 
 import model.BlindHorizontal;
 import model.BlindVertical;
+import service.DataWriter;
 import service.HorizontalService;
 import service.VerticalService;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class UserPageImpl implements UserPage {
 
     private HorizontalService horizontalServiceImpl;
     private VerticalService verticalServiceImpl;
+    private DataWriter dataWriter = new DataWriter();
 
     public UserPageImpl(HorizontalService horizontalServiceImpl, VerticalService verticalServiceImpl) {
         this.horizontalServiceImpl = horizontalServiceImpl;
@@ -22,6 +25,8 @@ public class UserPageImpl implements UserPage {
 
     @Override
     public void showBlindCost() {
+        File file = new File(".\\src\\main\\resources\\output.csv");
+        file.delete();
         while (true) {
             System.out.println("Would you like to calculate the cost of blinds?\nIf yes - enter Y, if no - enter N");
             String answer = scannerStr.nextLine();
@@ -30,12 +35,13 @@ public class UserPageImpl implements UserPage {
                 System.out.println("Choose the type of blinds: horizontal (enter H) or vertical (enter V)");
                 String horizontalOrVertical = scannerStr.nextLine();
                 if (horizontalOrVertical.equalsIgnoreCase("H")) {
-                    costBlinds = horizontalServiceImpl.calculateCost(requestData());
+                    costBlinds = horizontalServiceImpl.calculateCost(requestDataHorizontalBlind());
+                    System.out.println("Horizontal blind costs " + costBlinds + " rubles.\n");
                 } else if (horizontalOrVertical.equalsIgnoreCase("V")) {
                     costBlinds = verticalServiceImpl.calculateCost(requestDataVerticalBlind());
+                    System.out.println("Vertical blind costs " + costBlinds + " rubles.\n");
                 }
-                System.out.println("Horizontal blind costs " + costBlinds + " rubles.\n");
-                System.out.println();
+                dataWriter.writeDataToFile(".\\src\\main\\resources\\output.csv", "blind costs=" + costBlinds + "\n");
             } else if (answer.equalsIgnoreCase("N")) {
 
                 System.out.println("Calculation finished.");
@@ -46,7 +52,7 @@ public class UserPageImpl implements UserPage {
         }
     }
 
-    private BlindHorizontal requestData() {
+    private BlindHorizontal requestDataHorizontalBlind() {
         BlindHorizontal blindHorizontal = new BlindHorizontal();
         System.out.println("Enter the width of the horizontal blind in mm: ");
         blindHorizontal.setWidth(scanner.nextInt());
@@ -54,6 +60,7 @@ public class UserPageImpl implements UserPage {
         blindHorizontal.setHeight(scanner.nextInt());
         System.out.println("Enter the color number of the horizontal blind (201, 202): ");
         blindHorizontal.setColor(scanner.nextInt());
+        dataWriter.writeDataToFile(".\\src\\main\\resources\\output.csv", blindHorizontal.toString());
         return blindHorizontal;
     }
 
@@ -69,6 +76,7 @@ public class UserPageImpl implements UserPage {
         blindVertical.setColor(verticalServiceImpl.returnColor(scanner.nextInt()));
         System.out.println("Enter the mount type of the vertical blind (0 - ceiling, 1 - wall): ");
         blindVertical.setMountType(verticalServiceImpl.returnMountType(scanner.nextInt()));
+        dataWriter.writeDataToFile(".\\src\\main\\resources\\output.csv", blindVertical.toString());
         return blindVertical;
     }
 }
