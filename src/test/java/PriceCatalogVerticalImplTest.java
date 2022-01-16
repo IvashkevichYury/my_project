@@ -1,0 +1,35 @@
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import service.DataReader;
+import service.DataReaderImpl;
+import service.PriceCatalogVertical;
+import service.PriceCatalogVerticalImpl;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class PriceCatalogVerticalImplTest {
+    DataReader dataReader = new DataReaderImpl();
+    PriceCatalogVertical priceCatalogVertical = new PriceCatalogVerticalImpl(dataReader);
+
+    @ParameterizedTest
+    @CsvSource({"5", "10"})
+    void calculateCost_getIncorrectColorOfBlind_ShouldThrowIllegalArgumentException
+            (int color) {
+
+        Exception actualException = assertThrows(IllegalArgumentException.class,
+                () -> priceCatalogVertical.getColor(color));
+        String expectedMessage = "color must be white(0), green(1), yellow(2), blue(3), beige(4)";
+        assertEquals(expectedMessage, actualException.getMessage());
+    }
+
+    @ParameterizedTest
+    @CsvSource({"2", "3"})
+    void calculateCost_getIncorrectMountType_ShouldThrowIllegalArgumentException
+            (int mountType) {
+
+        Exception actualException = assertThrows(IllegalArgumentException.class,
+                () -> priceCatalogVertical.getMountType(mountType));
+        String expectedMessage = "type must be ceiling(0) or wall(1)";
+        assertEquals(expectedMessage, actualException.getMessage());
+    }
+}
