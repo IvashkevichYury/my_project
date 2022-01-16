@@ -3,15 +3,14 @@ package service;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PriceCatalogImpl implements PriceCatalog {
+public class PriceCatalogHorizontalImpl implements PriceCatalogHorizontal {
 
     private final Map<Integer, Double> colorMap = new HashMap<>();
-    String fileName = ".\\\\src\\\\main\\\\resources\\\\horizontalBlindsPriceCatalog.csv";
     private DataReader dataReader;
 
-    public PriceCatalogImpl(DataReader dataReader) {
+    public PriceCatalogHorizontalImpl(DataReader dataReader) {
         this.dataReader = dataReader;
-        dataReader.readFile(colorMap, fileName);
+        dataReader.readPricesFromFile(colorMap, dataReader.getPropertyValue("horizontalCatalog"));
     }
 
     @Override

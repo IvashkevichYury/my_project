@@ -1,6 +1,6 @@
 package service;
 
-public interface PriceCatalog {
+public interface PriceCatalogHorizontal {
 
     Double getColorPrice(int color);
 }

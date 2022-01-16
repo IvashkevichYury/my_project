@@ -6,11 +6,11 @@ public class HorizontalServiceImpl implements HorizontalService {
 
     private static final double dollarExchangeRate = 15;
     private BlindHorizontal blindHorizontal;
-    private PriceCatalog priceCatalog;
+    private PriceCatalogHorizontal priceCatalogHorizontal;
 
-    public HorizontalServiceImpl(BlindHorizontal blindHorizontal, PriceCatalog priceCatalog) {
+    public HorizontalServiceImpl(BlindHorizontal blindHorizontal, PriceCatalogHorizontal priceCatalogHorizontal) {
         this.blindHorizontal = blindHorizontal;
-        this.priceCatalog = priceCatalog;
+        this.priceCatalogHorizontal = priceCatalogHorizontal;
     }
 
     private double calculateAreaOfBlinds(int width, int height) {
@@ -25,7 +25,7 @@ public class HorizontalServiceImpl implements HorizontalService {
     public long calculateCost(BlindHorizontal blindHorizontal) {
         double area = calculateAreaOfBlinds(blindHorizontal.getWidth(), blindHorizontal.getHeight());
         blindHorizontal.setAreaBlinds(area);
-        double priceType = priceCatalog.getTypePrice(blindHorizontal.getType());
-        return Math.round(area * priceType * dollarExchangeRate);
+        double priceColor = priceCatalogHorizontal.getColorPrice(blindHorizontal.getColor());
+        return Math.round(area * priceColor * dollarExchangeRate);
     }
 }
