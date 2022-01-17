@@ -6,7 +6,7 @@ public interface VerticalService {
 
     long calculateCost(BlindVertical blindVertical);
 
-    String returnColor(int numberColor);
+    String getColor(int numberColor);
 
-    String returnMountType(int numberMount);
+    String getMountType(int numberMount);
 }

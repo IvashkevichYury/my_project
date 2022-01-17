@@ -73,9 +73,9 @@ public class UserPageImpl implements UserPage {
         System.out.println("Enter the type of the vertical blind (01, 02, 03): ");
         blindVertical.setType(scanner.nextInt());
         System.out.println("Enter the color of the vertical blind (0 - white, 1 - green, 2 - yellow, 3 - blue, 4 - beige): ");
-        blindVertical.setColor(verticalServiceImpl.returnColor(scanner.nextInt()));
+        blindVertical.setColor(verticalServiceImpl.getColor(scanner.nextInt()));
         System.out.println("Enter the mount type of the vertical blind (0 - ceiling, 1 - wall): ");
-        blindVertical.setMountType(verticalServiceImpl.returnMountType(scanner.nextInt()));
+        blindVertical.setMountType(verticalServiceImpl.getMountType(scanner.nextInt()));
         dataWriter.writeDataToFile(".\\src\\main\\resources\\output.csv", blindVertical.toString());
         return blindVertical;
     }

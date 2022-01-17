@@ -13,7 +13,7 @@ public class VerticalServiceImpl implements VerticalService {
         this.priceCatalogVertical = priceCatalogVertical;
     }
 
-    private double calculateAreaOfBlinds(int width, int height) {
+    private double calculateArea(int width, int height) {
         if (width < 400 || width > 6000 || height < 200 || height > 4000) {
             throw new IllegalArgumentException("width must be from 400 to 6000 and height must be from 200 to 4000");
         } else if (height < 1500) {
@@ -39,7 +39,7 @@ public class VerticalServiceImpl implements VerticalService {
 
     @Override
     public long calculateCost(BlindVertical blindVertical) {
-        double area = calculateAreaOfBlinds(blindVertical.getWidth(), blindVertical.getHeight());
+        double area = calculateArea(blindVertical.getWidth(), blindVertical.getHeight());
         blindVertical.setAreaBlinds(area);
         double priceType = priceCatalogVertical.getTypePrice(blindVertical.getType());
         double costOfMount = calculateCostOfMount(blindVertical.getMountType(), blindVertical.getWidth());
@@ -47,12 +47,12 @@ public class VerticalServiceImpl implements VerticalService {
     }
 
     @Override
-    public String returnColor(int numberColor) {
+    public String getColor(int numberColor) {
         return priceCatalogVertical.getColor(numberColor);
     }
 
     @Override
-    public String returnMountType(int numberMount) {
+    public String getMountType(int numberMount) {
         return priceCatalogVertical.getMountType(numberMount);
     }
 }

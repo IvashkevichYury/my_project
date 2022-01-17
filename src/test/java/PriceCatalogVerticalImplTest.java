@@ -13,7 +13,7 @@ class PriceCatalogVerticalImplTest {
 
     @ParameterizedTest
     @CsvSource({"5", "10"})
-    void calculateCost_getIncorrectColorOfBlind_ShouldThrowIllegalArgumentException
+    void getColor_getIncorrectColorOfBlind_ShouldThrowIllegalArgumentException
             (int color) {
 
         Exception actualException = assertThrows(IllegalArgumentException.class,
@@ -24,7 +24,7 @@ class PriceCatalogVerticalImplTest {
 
     @ParameterizedTest
     @CsvSource({"2", "3"})
-    void calculateCost_getIncorrectMountType_ShouldThrowIllegalArgumentException
+    void getMountType_getIncorrectMountType_ShouldThrowIllegalArgumentException
             (int mountType) {
 
         Exception actualException = assertThrows(IllegalArgumentException.class,
