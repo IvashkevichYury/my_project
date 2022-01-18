@@ -5,20 +5,17 @@ import java.util.Map;
 public class PriceCatalogVerticalImpl implements PriceCatalogVertical {
 
     private Map<Integer, Double> typeMap;
-    private double priceMount;
     String[] listColor = {"white", "green", "yellow", "blue", "beige"};
     String[] listMountType = {"ceiling", "wall"};
     private DataReader dataReader;
 
     public PriceCatalogVerticalImpl(DataReader dataReader) {
         this.dataReader = dataReader;
-        typeMap = dataReader.readPricesFromFile(dataReader.getPropertyValue("verticalCatalog"));
-        priceMount = Double.parseDouble(dataReader.getPropertyValue("priceMount"));
     }
 
     @Override
     public double getPriceMount() {
-        return priceMount;
+        return Double.parseDouble(dataReader.getPropertyValue("priceMount"));
     }
 
     @Override
@@ -39,6 +36,7 @@ public class PriceCatalogVerticalImpl implements PriceCatalogVertical {
 
     @Override
     public Double getTypePrice(int type) {
+        typeMap = dataReader.readPricesFromFile(dataReader.getPropertyValue("verticalCatalog"));
         if (typeMap.get(type) == null) {
             throw new IllegalArgumentException("type must be 01, 02 or 03");
         }
