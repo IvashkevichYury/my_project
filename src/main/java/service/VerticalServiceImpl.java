@@ -27,12 +27,14 @@ public class VerticalServiceImpl implements VerticalService {
         double priceMount = priceCatalogVertical.getPriceMount();
         if (mountType.equalsIgnoreCase("ceiling")) {
             return costOfMount;
-        } else if ((mountType.equalsIgnoreCase("wall")) && (width < 2000)) {
-            costOfMount = priceMount * 2;
-        } else if ((mountType.equalsIgnoreCase("wall")) && (width >= 2000 && width <= 3000)) {
-            costOfMount = priceMount * 3;
-        } else if ((mountType.equalsIgnoreCase("wall")) && (width > 3000)) {
-            costOfMount = priceMount * 4;
+        } else if (mountType.equalsIgnoreCase("wall")) {
+            if (width < 2000) {
+                costOfMount = priceMount * 2;
+            } else if (width <= 3000) {
+                costOfMount = priceMount * 3;
+            } else {
+                costOfMount = priceMount * 4;
+            }
         }
         return costOfMount;
     }
