@@ -42,4 +42,9 @@ public class PriceCatalogVerticalImpl implements PriceCatalogVertical {
         }
         return typeMap.get(type);
     }
+
+    @Override
+    public double getDollarExchangeRate() {
+        return Double.parseDouble(dataReader.getPropertyValue("dollarExchangeRate"));
+    }
 }

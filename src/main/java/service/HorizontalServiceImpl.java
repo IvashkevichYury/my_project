@@ -4,7 +4,6 @@ import model.BlindHorizontal;
 
 public class HorizontalServiceImpl implements HorizontalService {
 
-    private static final double dollarExchangeRate = 15;
     private BlindHorizontal blindHorizontal;
     private PriceCatalogHorizontal priceCatalogHorizontal;
 
@@ -26,6 +25,7 @@ public class HorizontalServiceImpl implements HorizontalService {
         double area = calculateArea(blindHorizontal.getWidth(), blindHorizontal.getHeight());
         blindHorizontal.setAreaBlinds(area);
         double priceColor = priceCatalogHorizontal.getColorPrice(blindHorizontal.getColor());
+        double dollarExchangeRate = priceCatalogHorizontal.getDollarExchangeRate();
         return Math.round(area * priceColor * dollarExchangeRate);
     }
 }

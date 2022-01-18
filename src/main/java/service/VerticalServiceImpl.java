@@ -4,7 +4,6 @@ import model.BlindVertical;
 
 public class VerticalServiceImpl implements VerticalService {
 
-    private static final double dollarExchangeRate = 15;
     private BlindVertical blindVertical;
     private PriceCatalogVertical priceCatalogVertical;
 
@@ -45,6 +44,7 @@ public class VerticalServiceImpl implements VerticalService {
         blindVertical.setAreaBlinds(area);
         double priceType = priceCatalogVertical.getTypePrice(blindVertical.getType());
         double costOfMount = calculateCostOfMount(blindVertical.getMountType(), blindVertical.getWidth());
+        double dollarExchangeRate = priceCatalogVertical.getDollarExchangeRate();
         return Math.round(area * priceType * dollarExchangeRate + costOfMount * dollarExchangeRate);
     }
 

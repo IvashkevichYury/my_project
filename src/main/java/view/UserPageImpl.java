@@ -3,6 +3,7 @@ package view;
 import model.BlindHorizontal;
 import model.BlindVertical;
 import service.DataWriter;
+import service.DataWriterImpl;
 import service.HorizontalService;
 import service.VerticalService;
 
@@ -13,7 +14,7 @@ public class UserPageImpl implements UserPage {
 
     private HorizontalService horizontalServiceImpl;
     private VerticalService verticalServiceImpl;
-    private DataWriter dataWriter = new DataWriter();
+    private DataWriter dataWriter = new DataWriterImpl();
 
     public UserPageImpl(HorizontalService horizontalServiceImpl, VerticalService verticalServiceImpl) {
         this.horizontalServiceImpl = horizontalServiceImpl;
@@ -22,10 +23,11 @@ public class UserPageImpl implements UserPage {
 
     Scanner scanner = new Scanner(System.in);
     Scanner scannerStr = new Scanner(System.in);
+    String fileName = dataWriter.getPropertyValue("outputFile");
 
     @Override
     public void showBlindCost() {
-        File file = new File(".\\src\\main\\resources\\output.csv");
+        File file = new File(fileName);
         file.delete();
         while (true) {
             System.out.println("Would you like to calculate the cost of blinds?\nIf yes - enter Y, if no - enter N");
@@ -41,7 +43,7 @@ public class UserPageImpl implements UserPage {
                     costBlinds = verticalServiceImpl.calculateCost(requestDataVerticalBlind());
                     System.out.println("Vertical blind costs " + costBlinds + " rubles.\n");
                 }
-                dataWriter.writeDataToFile(".\\src\\main\\resources\\output.csv", "blind costs=" + costBlinds + "\n");
+                dataWriter.writeDataToFile(fileName, "blind costs=" + costBlinds + "\n");
             } else if (answer.equalsIgnoreCase("N")) {
 
                 System.out.println("Calculation finished.");
@@ -60,7 +62,7 @@ public class UserPageImpl implements UserPage {
         blindHorizontal.setHeight(scanner.nextInt());
         System.out.println("Enter the color number of the horizontal blind (201, 202): ");
         blindHorizontal.setColor(scanner.nextInt());
-        dataWriter.writeDataToFile(".\\src\\main\\resources\\output.csv", blindHorizontal.toString());
+        dataWriter.writeDataToFile(fileName, blindHorizontal.toString());
         return blindHorizontal;
     }
 
@@ -76,7 +78,7 @@ public class UserPageImpl implements UserPage {
         blindVertical.setColor(verticalServiceImpl.getColor(scanner.nextInt()));
         System.out.println("Enter the mount type of the vertical blind (0 - ceiling, 1 - wall): ");
         blindVertical.setMountType(verticalServiceImpl.getMountType(scanner.nextInt()));
-        dataWriter.writeDataToFile(".\\src\\main\\resources\\output.csv", blindVertical.toString());
+        dataWriter.writeDataToFile(fileName, blindVertical.toString());
         return blindVertical;
     }
 }

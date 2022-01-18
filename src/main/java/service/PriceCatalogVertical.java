@@ -9,4 +9,6 @@ public interface PriceCatalogVertical {
     String getMountType(int numberMount);
 
     Double getTypePrice(int type);
+
+    double getDollarExchangeRate();
 }
