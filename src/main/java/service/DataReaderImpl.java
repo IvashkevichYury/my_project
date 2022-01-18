@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
@@ -12,7 +13,8 @@ public class DataReaderImpl implements DataReader {
     double value;
 
     @Override
-    public Map<Integer, Double> readPricesFromFile(Map<Integer, Double> price, String fileName) {
+    public Map<Integer, Double> readPricesFromFile(String fileName) {
+        Map<Integer, Double> price = new HashMap<>();
         File file = new File(fileName);
 
         try {

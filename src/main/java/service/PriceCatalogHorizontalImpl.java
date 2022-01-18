@@ -5,12 +5,12 @@ import java.util.Map;
 
 public class PriceCatalogHorizontalImpl implements PriceCatalogHorizontal {
 
-    private final Map<Integer, Double> colorMap = new HashMap<>();
+    private Map<Integer, Double> colorMap;
     private DataReader dataReader;
 
     public PriceCatalogHorizontalImpl(DataReader dataReader) {
         this.dataReader = dataReader;
-        dataReader.readPricesFromFile(colorMap, dataReader.getPropertyValue("horizontalCatalog"));
+        colorMap = dataReader.readPricesFromFile(dataReader.getPropertyValue("horizontalCatalog"));
     }
 
     @Override

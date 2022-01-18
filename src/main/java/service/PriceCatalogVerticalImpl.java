@@ -1,11 +1,10 @@
 package service;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class PriceCatalogVerticalImpl implements PriceCatalogVertical {
 
-    private final Map<Integer, Double> typeMap = new HashMap<>();
+    private Map<Integer, Double> typeMap;
     private double priceMount;
     String[] listColor = {"white", "green", "yellow", "blue", "beige"};
     String[] listMountType = {"ceiling", "wall"};
@@ -13,7 +12,7 @@ public class PriceCatalogVerticalImpl implements PriceCatalogVertical {
 
     public PriceCatalogVerticalImpl(DataReader dataReader) {
         this.dataReader = dataReader;
-        dataReader.readPricesFromFile(typeMap, dataReader.getPropertyValue("verticalCatalog"));
+        typeMap = dataReader.readPricesFromFile(dataReader.getPropertyValue("verticalCatalog"));
         priceMount = Double.parseDouble(dataReader.getPropertyValue("priceMount"));
     }
 

@@ -4,7 +4,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import service.*;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,12 +14,11 @@ class HorizontalServiceImplTest {
     DataReader dataReader = new DataReaderImpl();
     PriceCatalogHorizontal catalog = new PriceCatalogHorizontalImpl(dataReader);
     HorizontalService horizontalBlindServiceImpl = new HorizontalServiceImpl(blind, catalog);
-    private final Map<Integer, Double> colorMap = new HashMap<>();
     String fileName = ".\\\\src\\\\main\\\\resources\\\\horizontalBlindsPriceCatalog.csv";
 
     @BeforeEach
     void setUp() {
-        dataReader.readPricesFromFile(colorMap, fileName);
+        Map<Integer, Double> colorMap = dataReader.readPricesFromFile(fileName);
     }
 
     @ParameterizedTest
