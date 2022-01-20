@@ -86,11 +86,6 @@ public class BlindVertical {
 
     @Override
     public String toString() {
-        return "Vertical blind:" +
-                "width=" + width +
-                ", height=" + height +
-                ", type=" + type +
-                ", color=" + color +
-                ", mountType=" + mountType + ", ";
+        return width + "," + height + "," + color + "," + type + "," + mountType + ",";
     }
 }

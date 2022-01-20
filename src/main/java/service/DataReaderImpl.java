@@ -15,6 +15,7 @@ public class DataReaderImpl implements DataReader {
 
         try {
             Scanner scanner = new Scanner(file);
+            scanner.nextLine();
             while (scanner.hasNextLine()) {
                 String[] lines = scanner.nextLine().split(",", 2);
                 price.put(Integer.parseInt(lines[0]), Double.parseDouble(lines[1]));

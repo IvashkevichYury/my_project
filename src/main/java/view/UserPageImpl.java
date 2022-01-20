@@ -11,8 +11,8 @@ public class UserPageImpl implements UserPage {
 
     private HorizontalService horizontalServiceImpl;
     private VerticalService verticalServiceImpl;
-    private DataWriter dataWriter = new DataWriterImpl();
     private Property property = new PropertyImpl();
+    private DBBlinds db = new DBBlindsImpl();
 
     public UserPageImpl(HorizontalService horizontalServiceImpl, VerticalService verticalServiceImpl) {
         this.horizontalServiceImpl = horizontalServiceImpl;
@@ -41,9 +41,13 @@ public class UserPageImpl implements UserPage {
                     costBlinds = verticalServiceImpl.calculateCost(requestDataVerticalBlind());
                     System.out.println("Vertical blind costs " + costBlinds + " rubles.\n");
                 }
-                dataWriter.writeDataToFile(fileName, "blind costs=" + costBlinds + "\n");
+                db.saveOrders(costBlinds + "\n");
             } else if (answer.equalsIgnoreCase("N")) {
-
+                System.out.println("To save orders to a file, entered S");
+                String answerSave = scannerStr.nextLine();
+                if (answerSave.equalsIgnoreCase("S")) {
+                    db.getOrders(fileName);
+                }
                 System.out.println("Calculation finished.");
                 scannerStr.close();
                 scanner.close();
@@ -60,7 +64,7 @@ public class UserPageImpl implements UserPage {
         blindHorizontal.setHeight(scanner.nextInt());
         System.out.println("Enter the color number of the horizontal blind (201, 202): ");
         blindHorizontal.setColor(scanner.nextInt());
-        dataWriter.writeDataToFile(fileName, blindHorizontal.toString());
+        db.saveOrders(blindHorizontal.toString());
         return blindHorizontal;
     }
 
@@ -76,7 +80,7 @@ public class UserPageImpl implements UserPage {
         blindVertical.setColor(verticalServiceImpl.getColor(scanner.nextInt()));
         System.out.println("Enter the mount type of the vertical blind (0 - ceiling, 1 - wall): ");
         blindVertical.setMountType(verticalServiceImpl.getMountType(scanner.nextInt()));
-        dataWriter.writeDataToFile(fileName, blindVertical.toString());
+        db.saveOrders(blindVertical.toString());
         return blindVertical;
     }
 }
