@@ -8,14 +8,16 @@ public class PriceCatalogVerticalImpl implements PriceCatalogVertical {
     String[] listColor = {"white", "green", "yellow", "blue", "beige"};
     String[] listMountType = {"ceiling", "wall"};
     private DataReader dataReader;
+    private Property property;
 
-    public PriceCatalogVerticalImpl(DataReader dataReader) {
+    public PriceCatalogVerticalImpl(DataReader dataReader, Property property) {
         this.dataReader = dataReader;
+        this.property = property;
     }
 
     @Override
     public double getPriceMount() {
-        return Double.parseDouble(dataReader.getPropertyValue("priceMount"));
+        return Double.parseDouble(property.getPropertyValue("priceMount"));
     }
 
     @Override
@@ -36,7 +38,7 @@ public class PriceCatalogVerticalImpl implements PriceCatalogVertical {
 
     @Override
     public Double getTypePrice(int type) {
-        typeMap = dataReader.readPricesFromFile(dataReader.getPropertyValue("verticalCatalog"));
+        typeMap = dataReader.readPricesFromFile(property.getPropertyValue("verticalCatalog"));
         if (typeMap.get(type) == null) {
             throw new IllegalArgumentException("type must be 01, 02 or 03");
         }
@@ -45,6 +47,6 @@ public class PriceCatalogVerticalImpl implements PriceCatalogVertical {
 
     @Override
     public double getDollarExchangeRate() {
-        return Double.parseDouble(dataReader.getPropertyValue("dollarExchangeRate"));
+        return Double.parseDouble(property.getPropertyValue("dollarExchangeRate"));
     }
 }

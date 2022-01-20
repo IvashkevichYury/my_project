@@ -11,7 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class VerticalServiceImplTest {
     BlindVertical blindVertical;
     DataReader dataReader = new DataReaderImpl();
-    PriceCatalogVertical priceCatalogVertical = new PriceCatalogVerticalImpl(dataReader);
+    Property property = new PropertyImpl();
+    PriceCatalogVertical priceCatalogVertical = new PriceCatalogVerticalImpl(dataReader, property);
     VerticalService verticalService = new VerticalServiceImpl(blindVertical, priceCatalogVertical);
     String fileName = ".\\\\src\\\\main\\\\resources\\\\verticalBlindsPriceCatalog.csv";
 

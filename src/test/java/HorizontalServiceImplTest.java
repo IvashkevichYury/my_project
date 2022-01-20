@@ -12,7 +12,8 @@ class HorizontalServiceImplTest {
 
     BlindHorizontal blind;
     DataReader dataReader = new DataReaderImpl();
-    PriceCatalogHorizontal catalog = new PriceCatalogHorizontalImpl(dataReader);
+    Property property = new PropertyImpl();
+    PriceCatalogHorizontal catalog = new PriceCatalogHorizontalImpl(dataReader, property);
     HorizontalService horizontalBlindServiceImpl = new HorizontalServiceImpl(blind, catalog);
     String fileName = ".\\\\src\\\\main\\\\resources\\\\horizontalBlindsPriceCatalog.csv";
 

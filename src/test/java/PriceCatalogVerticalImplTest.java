@@ -1,15 +1,13 @@
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import service.DataReader;
-import service.DataReaderImpl;
-import service.PriceCatalogVertical;
-import service.PriceCatalogVerticalImpl;
+import service.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PriceCatalogVerticalImplTest {
     DataReader dataReader = new DataReaderImpl();
-    PriceCatalogVertical priceCatalogVertical = new PriceCatalogVerticalImpl(dataReader);
+    Property property = new PropertyImpl();
+    PriceCatalogVertical priceCatalogVertical = new PriceCatalogVerticalImpl(dataReader, property);
 
     @ParameterizedTest
     @CsvSource({"5", "10"})

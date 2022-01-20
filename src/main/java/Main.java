@@ -10,8 +10,9 @@ public class Main {
         BlindHorizontal blindHorizontal = new BlindHorizontal();
         BlindVertical blindVertical = new BlindVertical();
         DataReader dataReader = new DataReaderImpl();
-        PriceCatalogHorizontal priceCatalogHorizontalImpl = new PriceCatalogHorizontalImpl(dataReader);
-        PriceCatalogVertical priceCatalogVerticalImpl = new PriceCatalogVerticalImpl(dataReader);
+        Property property = new PropertyImpl();
+        PriceCatalogHorizontal priceCatalogHorizontalImpl = new PriceCatalogHorizontalImpl(dataReader, property);
+        PriceCatalogVertical priceCatalogVerticalImpl = new PriceCatalogVerticalImpl(dataReader, property);
         HorizontalService horizontalService = new HorizontalServiceImpl(blindHorizontal, priceCatalogHorizontalImpl);
         VerticalService verticalService = new VerticalServiceImpl(blindVertical, priceCatalogVerticalImpl);
         UserPage userPageImpl = new UserPageImpl(horizontalService, verticalService);

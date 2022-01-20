@@ -2,10 +2,7 @@ package view;
 
 import model.BlindHorizontal;
 import model.BlindVertical;
-import service.DataWriter;
-import service.DataWriterImpl;
-import service.HorizontalService;
-import service.VerticalService;
+import service.*;
 
 import java.io.File;
 import java.util.Scanner;
@@ -15,6 +12,7 @@ public class UserPageImpl implements UserPage {
     private HorizontalService horizontalServiceImpl;
     private VerticalService verticalServiceImpl;
     private DataWriter dataWriter = new DataWriterImpl();
+    private Property property = new PropertyImpl();
 
     public UserPageImpl(HorizontalService horizontalServiceImpl, VerticalService verticalServiceImpl) {
         this.horizontalServiceImpl = horizontalServiceImpl;
@@ -23,7 +21,7 @@ public class UserPageImpl implements UserPage {
 
     Scanner scanner = new Scanner(System.in);
     Scanner scannerStr = new Scanner(System.in);
-    String fileName = dataWriter.getPropertyValue("outputFile");
+    String fileName = property.getPropertyValue("outputFile");
 
     @Override
     public void showBlindCost() {
