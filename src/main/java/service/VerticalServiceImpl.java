@@ -6,10 +6,12 @@ public class VerticalServiceImpl implements VerticalService {
 
     private BlindVertical blindVertical;
     private PriceCatalogVertical priceCatalogVertical;
+    private ExchangeRate exchangeRate;
 
-    public VerticalServiceImpl(BlindVertical blindVertical, PriceCatalogVertical priceCatalogVertical) {
+    public VerticalServiceImpl(BlindVertical blindVertical, PriceCatalogVertical priceCatalogVertical, ExchangeRate exchangeRate) {
         this.blindVertical = blindVertical;
         this.priceCatalogVertical = priceCatalogVertical;
+        this.exchangeRate = exchangeRate;
     }
 
     private double calculateArea(int width, int height) {
@@ -44,7 +46,7 @@ public class VerticalServiceImpl implements VerticalService {
         blindVertical.setAreaBlinds(area);
         double priceType = priceCatalogVertical.getTypePrice(blindVertical.getType());
         double costOfMount = calculateCostOfMount(blindVertical.getMountType(), blindVertical.getWidth());
-        double dollarExchangeRate = priceCatalogVertical.getDollarExchangeRate();
+        double dollarExchangeRate = exchangeRate.getDollarExchangeRate();
         return Math.round(area * priceType * dollarExchangeRate + costOfMount * dollarExchangeRate);
     }
 

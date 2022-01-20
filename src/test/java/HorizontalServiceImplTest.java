@@ -14,7 +14,8 @@ class HorizontalServiceImplTest {
     DataReader dataReader = new DataReaderImpl();
     Property property = new PropertyImpl();
     PriceCatalogHorizontal catalog = new PriceCatalogHorizontalImpl(dataReader, property);
-    HorizontalService horizontalBlindServiceImpl = new HorizontalServiceImpl(blind, catalog);
+    ExchangeRate exchangeRate = new ExchangeRateImpl(property);
+    HorizontalService horizontalBlindServiceImpl = new HorizontalServiceImpl(blind, catalog, exchangeRate);
     String fileName = ".\\\\src\\\\main\\\\resources\\\\horizontalBlindsPriceCatalog.csv";
 
     @BeforeEach

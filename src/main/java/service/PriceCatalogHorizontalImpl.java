@@ -21,9 +21,4 @@ public class PriceCatalogHorizontalImpl implements PriceCatalogHorizontal {
         }
         return colorMap.get(color);
     }
-
-    @Override
-    public double getDollarExchangeRate() {
-        return Double.parseDouble(property.getPropertyValue("dollarExchangeRate"));
-    }
 }

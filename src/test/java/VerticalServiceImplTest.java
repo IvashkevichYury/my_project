@@ -12,8 +12,9 @@ class VerticalServiceImplTest {
     BlindVertical blindVertical;
     DataReader dataReader = new DataReaderImpl();
     Property property = new PropertyImpl();
+    ExchangeRate exchangeRate = new ExchangeRateImpl(property);
     PriceCatalogVertical priceCatalogVertical = new PriceCatalogVerticalImpl(dataReader, property);
-    VerticalService verticalService = new VerticalServiceImpl(blindVertical, priceCatalogVertical);
+    VerticalService verticalService = new VerticalServiceImpl(blindVertical, priceCatalogVertical, exchangeRate);
     String fileName = ".\\\\src\\\\main\\\\resources\\\\verticalBlindsPriceCatalog.csv";
 
     @BeforeEach

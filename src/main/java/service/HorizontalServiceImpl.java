@@ -6,10 +6,12 @@ public class HorizontalServiceImpl implements HorizontalService {
 
     private BlindHorizontal blindHorizontal;
     private PriceCatalogHorizontal priceCatalogHorizontal;
+    private ExchangeRate exchangeRate;
 
-    public HorizontalServiceImpl(BlindHorizontal blindHorizontal, PriceCatalogHorizontal priceCatalogHorizontal) {
+    public HorizontalServiceImpl(BlindHorizontal blindHorizontal, PriceCatalogHorizontal priceCatalogHorizontal, ExchangeRate exchangeRate) {
         this.blindHorizontal = blindHorizontal;
         this.priceCatalogHorizontal = priceCatalogHorizontal;
+        this.exchangeRate = exchangeRate;
     }
 
     private double calculateArea(int width, int height) {
@@ -25,7 +27,7 @@ public class HorizontalServiceImpl implements HorizontalService {
         double area = calculateArea(blindHorizontal.getWidth(), blindHorizontal.getHeight());
         blindHorizontal.setAreaBlinds(area);
         double priceColor = priceCatalogHorizontal.getColorPrice(blindHorizontal.getColor());
-        double dollarExchangeRate = priceCatalogHorizontal.getDollarExchangeRate();
+        double dollarExchangeRate = exchangeRate.getDollarExchangeRate();
         return Math.round(area * priceColor * dollarExchangeRate);
     }
 }

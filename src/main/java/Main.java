@@ -11,10 +11,11 @@ public class Main {
         BlindVertical blindVertical = new BlindVertical();
         DataReader dataReader = new DataReaderImpl();
         Property property = new PropertyImpl();
+        ExchangeRate exchangeRate = new ExchangeRateImpl(property);
         PriceCatalogHorizontal priceCatalogHorizontalImpl = new PriceCatalogHorizontalImpl(dataReader, property);
         PriceCatalogVertical priceCatalogVerticalImpl = new PriceCatalogVerticalImpl(dataReader, property);
-        HorizontalService horizontalService = new HorizontalServiceImpl(blindHorizontal, priceCatalogHorizontalImpl);
-        VerticalService verticalService = new VerticalServiceImpl(blindVertical, priceCatalogVerticalImpl);
+        HorizontalService horizontalService = new HorizontalServiceImpl(blindHorizontal, priceCatalogHorizontalImpl, exchangeRate);
+        VerticalService verticalService = new VerticalServiceImpl(blindVertical, priceCatalogVerticalImpl, exchangeRate);
         UserPage userPageImpl = new UserPageImpl(horizontalService, verticalService);
         userPageImpl.showBlindCost();
 
