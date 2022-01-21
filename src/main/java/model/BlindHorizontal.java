@@ -59,6 +59,12 @@ public class BlindHorizontal {
 
     @Override
     public String toString() {
-        return width + "," + height + "," + color + ",,,";
+        return "BlindHorizontal{" +
+                "width=" + width +
+                ", height=" + height +
+                ", color=" + color +
+                ", areaBlinds=" + areaBlinds +
+                ", blindsCost=" + blindsCost +
+                '}';
     }
 }
