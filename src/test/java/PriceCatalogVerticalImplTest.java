@@ -1,3 +1,4 @@
+import model.BlindVertical;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import service.*;
@@ -5,29 +6,28 @@ import service.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PriceCatalogVerticalImplTest {
-    DataReader dataReader = new DataReaderImpl();
-    Property property = new PropertyImpl();
-    PriceCatalogVertical priceCatalogVertical = new PriceCatalogVerticalImpl(dataReader, property);
+
+    BlindVertical blindVertical = new BlindVertical();
 
     @ParameterizedTest
-    @CsvSource({"5", "10"})
+    @CsvSource({"red", "black"})
     void getColor_getIncorrectColorOfBlind_ShouldThrowIllegalArgumentException
-            (int color) {
+            (String color) {
 
         Exception actualException = assertThrows(IllegalArgumentException.class,
-                () -> priceCatalogVertical.getColor(color));
-        String expectedMessage = "color must be white(0), green(1), yellow(2), blue(3), beige(4)";
+                () -> blindVertical.setColor(color));
+        String expectedMessage = "color must be white, green, yellow, blue or beige";
         assertEquals(expectedMessage, actualException.getMessage());
     }
 
     @ParameterizedTest
-    @CsvSource({"2", "3"})
+    @CsvSource({"window", "floor"})
     void getMountType_getIncorrectMountType_ShouldThrowIllegalArgumentException
-            (int mountType) {
+            (String mountType) {
 
         Exception actualException = assertThrows(IllegalArgumentException.class,
-                () -> priceCatalogVertical.getMountType(mountType));
-        String expectedMessage = "type must be ceiling(0) or wall(1)";
+                () -> blindVertical.setMountType(mountType));
+        String expectedMessage = "type of mount must be ceiling or wall";
         assertEquals(expectedMessage, actualException.getMessage());
     }
 }

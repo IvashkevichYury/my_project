@@ -57,7 +57,16 @@ public class BlindVertical {
     }
 
     public void setColor(String color) {
-        this.color = color;
+        String[] listColor = {"white", "green", "yellow", "blue", "beige"};
+        for (String s : listColor) {
+            if (color.equalsIgnoreCase(s)) {
+                this.color = color;
+                break;
+            }
+        }
+        if (this.color == null) {
+            throw new IllegalArgumentException("color must be white, green, yellow, blue or beige");
+        }
     }
 
     public String getMountType() {
@@ -65,7 +74,16 @@ public class BlindVertical {
     }
 
     public void setMountType(String mountType) {
-        this.mountType = mountType;
+        String[] listMountType = {"ceiling", "wall"};
+        for (String s : listMountType) {
+            if (mountType.equalsIgnoreCase(s)) {
+                this.mountType = mountType;
+                break;
+            }
+        }
+        if (this.mountType == null) {
+            throw new IllegalArgumentException("type of mount must be ceiling or wall");
+        }
     }
 
     public double getAreaBlinds() {

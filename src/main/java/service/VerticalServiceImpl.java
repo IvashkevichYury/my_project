@@ -50,13 +50,4 @@ public class VerticalServiceImpl implements VerticalService {
         return Math.round(area * priceType * dollarExchangeRate + costOfMount * dollarExchangeRate);
     }
 
-    @Override
-    public String getColor(int numberColor) {
-        return priceCatalogVertical.getColor(numberColor);
-    }
-
-    @Override
-    public String getMountType(int numberMount) {
-        return priceCatalogVertical.getMountType(numberMount);
-    }
 }
