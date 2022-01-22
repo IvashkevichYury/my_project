@@ -2,5 +2,7 @@ package service;
 
 public interface DataWriter {
 
-    void writeDataToFile(String fileName, String data);
+    void writeDataToList(String blind);
+
+    void writeDataToFile(String fileName);
 }

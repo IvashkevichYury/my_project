@@ -12,7 +12,7 @@ public class UserPageImpl implements UserPage {
     private HorizontalService horizontalServiceImpl;
     private VerticalService verticalServiceImpl;
     private Property property = new PropertyImpl();
-    private DBBlinds db = new DBBlindsImpl();
+    private DataWriter db = new DataWriterImpl();
 
     public UserPageImpl(HorizontalService horizontalServiceImpl, VerticalService verticalServiceImpl) {
         this.horizontalServiceImpl = horizontalServiceImpl;
@@ -41,12 +41,12 @@ public class UserPageImpl implements UserPage {
                     costBlinds = verticalServiceImpl.calculateCost(requestDataVerticalBlind());
                     System.out.println("Vertical blind costs " + costBlinds + " rubles.\n");
                 }
-                db.saveOrders(costBlinds + "\n");
+                db.writeDataToList(costBlinds + "\n");
             } else if (answer.equalsIgnoreCase("N")) {
                 System.out.println("To save orders to a file, entered S");
                 String answerSave = scannerStr.nextLine();
                 if (answerSave.equalsIgnoreCase("S")) {
-                    db.getOrders(fileName);
+                    db.writeDataToFile(fileName);
                 }
                 System.out.println("Calculation finished.");
                 scannerStr.close();
@@ -64,7 +64,7 @@ public class UserPageImpl implements UserPage {
         blindHorizontal.setHeight(scanner.nextInt());
         System.out.println("Enter the color number of the horizontal blind (201, 202): ");
         blindHorizontal.setColor(scanner.nextInt());
-        db.saveOrders(blindHorizontal.toString());
+        db.writeDataToList(blindHorizontal.toString());
         return blindHorizontal;
     }
 
@@ -80,7 +80,7 @@ public class UserPageImpl implements UserPage {
         blindVertical.setColor(scannerStr.nextLine());
         System.out.println("Enter the mount type of the vertical blind (ceiling, wall): ");
         blindVertical.setMountType(scannerStr.nextLine());
-        db.saveOrders(blindVertical.toString());
+        db.writeDataToList(blindVertical.toString());
         return blindVertical;
     }
 }
