@@ -4,6 +4,6 @@ import model.BlindVertical;
 
 public interface VerticalService {
 
-    long calculateCost(BlindVertical blindVertical);
+    long calculateCost(BlindVertical blindVertical, String fileNameTypePrice, String fileNamePriceMount, String fileNameExchangeRate);
 
 }

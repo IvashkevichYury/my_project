@@ -2,7 +2,7 @@ package service;
 
 public interface PriceCatalogVertical {
 
-    double getPriceMount();
+    double getPriceMount(String fileName);
 
-    Double getTypePrice(int type);
+    Double getTypePrice(int type, String fileName);
 }

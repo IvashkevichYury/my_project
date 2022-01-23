@@ -5,6 +5,8 @@ import model.BlindVertical;
 import service.*;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class UserPageImpl implements UserPage {
@@ -12,7 +14,8 @@ public class UserPageImpl implements UserPage {
     private HorizontalService horizontalServiceImpl;
     private VerticalService verticalServiceImpl;
     private Property property = new PropertyImpl();
-    private DataWriter db = new DataWriterImpl();
+    private DataWriter dataWriter = new DataWriterImpl();
+    private Map<String, String> propertiesMap = new HashMap<>();
 
     public UserPageImpl(HorizontalService horizontalServiceImpl, VerticalService verticalServiceImpl) {
         this.horizontalServiceImpl = horizontalServiceImpl;
@@ -21,10 +24,11 @@ public class UserPageImpl implements UserPage {
 
     Scanner scanner = new Scanner(System.in);
     Scanner scannerStr = new Scanner(System.in);
-    String fileName = property.getPropertyValue("outputFile");
 
     @Override
     public void showBlindCost() {
+        propertiesMap = property.saveProperties(".\\src\\main\\resources\\application.properties");
+        String fileName = propertiesMap.get("outputFile");
         File file = new File(fileName);
         file.delete();
         while (true) {
@@ -35,18 +39,18 @@ public class UserPageImpl implements UserPage {
                 System.out.println("Choose the type of blinds: horizontal (enter H) or vertical (enter V)");
                 String horizontalOrVertical = scannerStr.nextLine();
                 if (horizontalOrVertical.equalsIgnoreCase("H")) {
-                    costBlinds = horizontalServiceImpl.calculateCost(requestDataHorizontalBlind());
+                    costBlinds = horizontalServiceImpl.calculateCost(requestDataHorizontalBlind(), propertiesMap.get("horizontalCatalog"), propertiesMap.get("dollarExchangeRate"));
                     System.out.println("Horizontal blind costs " + costBlinds + " rubles.\n");
                 } else if (horizontalOrVertical.equalsIgnoreCase("V")) {
-                    costBlinds = verticalServiceImpl.calculateCost(requestDataVerticalBlind());
+                    costBlinds = verticalServiceImpl.calculateCost(requestDataVerticalBlind(), propertiesMap.get("verticalCatalog"), propertiesMap.get("priceMount"), propertiesMap.get("dollarExchangeRate"));
                     System.out.println("Vertical blind costs " + costBlinds + " rubles.\n");
                 }
-                db.writeDataToList(costBlinds + "\n");
+                dataWriter.writeDataToList(costBlinds + "\n");
             } else if (answer.equalsIgnoreCase("N")) {
                 System.out.println("To save orders to a file, entered S");
                 String answerSave = scannerStr.nextLine();
                 if (answerSave.equalsIgnoreCase("S")) {
-                    db.writeDataToFile(fileName);
+                    dataWriter.writeDataToFile(fileName);
                 }
                 System.out.println("Calculation finished.");
                 scannerStr.close();
@@ -64,7 +68,7 @@ public class UserPageImpl implements UserPage {
         blindHorizontal.setHeight(scanner.nextInt());
         System.out.println("Enter the color number of the horizontal blind (201, 202): ");
         blindHorizontal.setColor(scanner.nextInt());
-        db.writeDataToList(blindHorizontal.toString());
+        dataWriter.writeDataToList(blindHorizontal.toString());
         return blindHorizontal;
     }
 
@@ -80,7 +84,7 @@ public class UserPageImpl implements UserPage {
         blindVertical.setColor(scannerStr.nextLine());
         System.out.println("Enter the mount type of the vertical blind (ceiling, wall): ");
         blindVertical.setMountType(scannerStr.nextLine());
-        db.writeDataToList(blindVertical.toString());
+        dataWriter.writeDataToList(blindVertical.toString());
         return blindVertical;
     }
 }

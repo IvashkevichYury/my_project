@@ -6,16 +6,14 @@ public class PriceCatalogHorizontalImpl implements PriceCatalogHorizontal {
 
     private Map<Integer, Double> colorMap;
     private DataReader dataReader;
-    private Property property;
 
-    public PriceCatalogHorizontalImpl(DataReader dataReader, Property property) {
+    public PriceCatalogHorizontalImpl(DataReader dataReader/*, Property property*/) {
         this.dataReader = dataReader;
-        this.property = property;
     }
 
     @Override
-    public Double getColorPrice(int color) {
-        colorMap = dataReader.readPricesFromFile(property.getPropertyValue("horizontalCatalog"));
+    public Double getColorPrice(int color, String fileName) {
+        colorMap = dataReader.readPricesFromFile(fileName);
         if (colorMap.get(color) == null) {
             throw new IllegalArgumentException("color must be 201 or 202");
         }

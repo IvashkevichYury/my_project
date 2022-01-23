@@ -1,6 +1,8 @@
 package service;
 
+import java.util.Map;
+
 public interface Property {
 
-    String getPropertyValue(String propertyName);
+    Map<String, String> saveProperties(String fileProperties);
 }

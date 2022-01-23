@@ -2,5 +2,5 @@ package service;
 
 public interface ExchangeRate {
 
-    double getDollarExchangeRate();
+    double getDollarExchangeRate(String fileName);
 }

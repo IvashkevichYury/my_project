@@ -6,21 +6,19 @@ public class PriceCatalogVerticalImpl implements PriceCatalogVertical {
 
     private Map<Integer, Double> typeMap;
     private DataReader dataReader;
-    private Property property;
 
-    public PriceCatalogVerticalImpl(DataReader dataReader, Property property) {
+    public PriceCatalogVerticalImpl(DataReader dataReader/*, Property property*/) {
         this.dataReader = dataReader;
-        this.property = property;
     }
 
     @Override
-    public double getPriceMount() {
-        return Double.parseDouble(property.getPropertyValue("priceMount"));
+    public double getPriceMount(String fileName) {
+        return Double.parseDouble(fileName);
     }
 
     @Override
-    public Double getTypePrice(int type) {
-        typeMap = dataReader.readPricesFromFile(property.getPropertyValue("verticalCatalog"));
+    public Double getTypePrice(int type, String fileName) {
+        typeMap = dataReader.readPricesFromFile(fileName);
         if (typeMap.get(type) == null) {
             throw new IllegalArgumentException("type must be 01, 02 or 03");
         }
