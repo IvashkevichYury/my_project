@@ -1,6 +1,6 @@
 package model;
 
-public class BlindVertical {
+public class BlindVertical extends Blind{
 
     private int width;
     private int height;

@@ -1,7 +1,6 @@
 import model.BlindVertical;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import service.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -39,13 +39,18 @@ public class UserPageImpl implements UserPage {
                 System.out.println("Choose the type of blinds: horizontal (enter H) or vertical (enter V)");
                 String horizontalOrVertical = scannerStr.nextLine();
                 if (horizontalOrVertical.equalsIgnoreCase("H")) {
-                    costBlinds = horizontalServiceImpl.calculateCost(requestDataHorizontalBlind(), propertiesMap.get("horizontalCatalog"), propertiesMap.get("dollarExchangeRate"));
+                    BlindHorizontal blindHorizontal = requestDataHorizontalBlind();
+                    costBlinds = horizontalServiceImpl.calculateCost(blindHorizontal, propertiesMap.get("horizontalCatalog"), propertiesMap.get("dollarExchangeRate"));
+                    blindHorizontal.setBlindsCost(costBlinds);
+                    dataWriter.writeDataToList(blindHorizontal);
                     System.out.println("Horizontal blind costs " + costBlinds + " rubles.\n");
                 } else if (horizontalOrVertical.equalsIgnoreCase("V")) {
-                    costBlinds = verticalServiceImpl.calculateCost(requestDataVerticalBlind(), propertiesMap.get("verticalCatalog"), propertiesMap.get("priceMount"), propertiesMap.get("dollarExchangeRate"));
+                    BlindVertical blindVertical = requestDataVerticalBlind();
+                    costBlinds = verticalServiceImpl.calculateCost(blindVertical, propertiesMap.get("verticalCatalog"), propertiesMap.get("priceMount"), propertiesMap.get("dollarExchangeRate"));
+                    blindVertical.setBlindsCost(costBlinds);
+                    dataWriter.writeDataToList(blindVertical);
                     System.out.println("Vertical blind costs " + costBlinds + " rubles.\n");
                 }
-                dataWriter.writeDataToList(costBlinds + "\n");
             } else if (answer.equalsIgnoreCase("N")) {
                 System.out.println("To save orders to a file, entered S");
                 String answerSave = scannerStr.nextLine();
@@ -68,7 +73,6 @@ public class UserPageImpl implements UserPage {
         blindHorizontal.setHeight(scanner.nextInt());
         System.out.println("Enter the color number of the horizontal blind (201, 202): ");
         blindHorizontal.setColor(scanner.nextInt());
-        dataWriter.writeDataToList(blindHorizontal.toString());
         return blindHorizontal;
     }
 
@@ -84,7 +88,6 @@ public class UserPageImpl implements UserPage {
         blindVertical.setColor(scannerStr.nextLine());
         System.out.println("Enter the mount type of the vertical blind (ceiling, wall): ");
         blindVertical.setMountType(scannerStr.nextLine());
-        dataWriter.writeDataToList(blindVertical.toString());
         return blindVertical;
     }
 }
