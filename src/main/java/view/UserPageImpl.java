@@ -15,7 +15,7 @@ public class UserPageImpl implements UserPage {
     private VerticalService verticalServiceImpl;
     private Property property = new PropertyImpl();
     private DataWriter dataWriter = new DataWriterImpl();
-    private Map<String, String> propertiesMap = new HashMap<>();
+//    private Map<String, String> propertiesMap = new HashMap<>();
 
     public UserPageImpl(HorizontalService horizontalServiceImpl, VerticalService verticalServiceImpl) {
         this.horizontalServiceImpl = horizontalServiceImpl;
@@ -27,8 +27,9 @@ public class UserPageImpl implements UserPage {
 
     @Override
     public void showBlindCost() {
-        propertiesMap = property.saveProperties(".\\src\\main\\resources\\application.properties");
-        String fileName = propertiesMap.get("outputFile");
+//        propertiesMap = property.saveProperties(".\\src\\main\\resources\\application.properties");
+//        String fileName = propertiesMap.get("outputFile");
+        String fileName = property.getValueProperties("outputFile");
         File file = new File(fileName);
         file.delete();
         while (true) {
@@ -40,13 +41,15 @@ public class UserPageImpl implements UserPage {
                 String horizontalOrVertical = scannerStr.nextLine();
                 if (horizontalOrVertical.equalsIgnoreCase("H")) {
                     BlindHorizontal blindHorizontal = requestDataHorizontalBlind();
-                    costBlinds = horizontalServiceImpl.calculateCost(blindHorizontal, propertiesMap.get("horizontalCatalog"), propertiesMap.get("dollarExchangeRate"));
+//                    costBlinds = horizontalServiceImpl.calculateCost(blindHorizontal, propertiesMap.get("horizontalCatalog"), propertiesMap.get("dollarExchangeRate"));
+                    costBlinds = horizontalServiceImpl.calculateCost(blindHorizontal, property.getValueProperties("horizontalCatalog"), property.getValueProperties("dollarExchangeRate"));
                     blindHorizontal.setBlindsCost(costBlinds);
                     dataWriter.writeDataToList(blindHorizontal);
                     System.out.println("Horizontal blind costs " + costBlinds + " rubles.\n");
                 } else if (horizontalOrVertical.equalsIgnoreCase("V")) {
                     BlindVertical blindVertical = requestDataVerticalBlind();
-                    costBlinds = verticalServiceImpl.calculateCost(blindVertical, propertiesMap.get("verticalCatalog"), propertiesMap.get("priceMount"), propertiesMap.get("dollarExchangeRate"));
+//                    costBlinds = verticalServiceImpl.calculateCost(blindVertical, propertiesMap.get("verticalCatalog"), propertiesMap.get("priceMount"), propertiesMap.get("dollarExchangeRate"));
+                    costBlinds = verticalServiceImpl.calculateCost(blindVertical, property.getValueProperties("verticalCatalog"), property.getValueProperties("priceMount"), property.getValueProperties("dollarExchangeRate"));
                     blindVertical.setBlindsCost(costBlinds);
                     dataWriter.writeDataToList(blindVertical);
                     System.out.println("Vertical blind costs " + costBlinds + " rubles.\n");

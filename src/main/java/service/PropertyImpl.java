@@ -9,19 +9,31 @@ import java.util.Properties;
 
 public class PropertyImpl implements Property{
 
-    public Map<String, String> saveProperties(String fileProperties) {
-        Properties properties = new Properties();
-        try {
-            properties.load(new FileInputStream(fileProperties));
+//    public Map<String, String> saveProperties(String fileProperties) {
+//        Properties properties = new Properties();
+//        try {
+//            properties.load(new FileInputStream(fileProperties));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        Map<String, String> mapProperties = new HashMap<>();
+//
+//        for (String name : properties.stringPropertyNames()) {
+//            mapProperties.put(name, properties.getProperty(name));
+//        }
+//        return mapProperties;
+//    }
+
+    public String getValueProperties(String propertyName) {
+        String propertyValue = "";
+        try (InputStream inputStream = PriceCatalogVerticalImpl.class.getResourceAsStream("/application.properties")) {
+            Properties properties = new Properties();
+            properties.load(inputStream);
+            propertyValue = properties.getProperty(propertyName);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
-
-        Map<String, String> mapProperties = new HashMap<>();
-
-        for (String name : properties.stringPropertyNames()) {
-            mapProperties.put(name, properties.getProperty(name));
-        }
-        return mapProperties;
+        return propertyValue;
     }
 }

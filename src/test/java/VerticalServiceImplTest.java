@@ -20,7 +20,7 @@ class VerticalServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        propertiesMap = property.saveProperties(".\\src\\main\\resources\\application.properties");
+//        propertiesMap = property.saveProperties(".\\src\\main\\resources\\application.properties");
     }
 
     @ParameterizedTest
@@ -28,7 +28,7 @@ class VerticalServiceImplTest {
     void calculateCost_getCeilingType_ShouldReturnCorrectCostOfBlind
             (int width, int height, int type, String mountType, long expected) {
         blindVertical = new BlindVertical(width, height, type, mountType);
-        long actual = verticalService.calculateCost(blindVertical, propertiesMap.get("verticalCatalog"), propertiesMap.get("priceMount"), propertiesMap.get("dollarExchangeRate"));
+        long actual = verticalService.calculateCost(blindVertical, property.getValueProperties("verticalCatalog"), property.getValueProperties("priceMount"), property.getValueProperties("dollarExchangeRate"));
         assertEquals(expected, actual);
     }
 
@@ -37,7 +37,7 @@ class VerticalServiceImplTest {
     void calculateCost_getCeilingType_ShouldReturnWrongCostOfBlind
             (int width, int height, int type, String mountType, long expected) {
         blindVertical = new BlindVertical(width, height, type, mountType);
-        long actual = verticalService.calculateCost(blindVertical, propertiesMap.get("verticalCatalog"), propertiesMap.get("priceMount"), propertiesMap.get("dollarExchangeRate"));
+        long actual = verticalService.calculateCost(blindVertical, property.getValueProperties("verticalCatalog"), property.getValueProperties("priceMount"), property.getValueProperties("dollarExchangeRate"));
         assertNotEquals(expected, actual);
     }
 
@@ -46,7 +46,7 @@ class VerticalServiceImplTest {
     void calculateCost_getWallTypeAndWidthLessThan2000_ShouldReturnCorrectCostOfBlind
             (int width, int height, int type, String mountType, long expected) {
         blindVertical = new BlindVertical(width, height, type, mountType);
-        long actual = verticalService.calculateCost(blindVertical, propertiesMap.get("verticalCatalog"), propertiesMap.get("priceMount"), propertiesMap.get("dollarExchangeRate"));
+        long actual = verticalService.calculateCost(blindVertical, property.getValueProperties("verticalCatalog"), property.getValueProperties("priceMount"), property.getValueProperties("dollarExchangeRate"));
         assertEquals(expected, actual);
     }
 
@@ -55,7 +55,7 @@ class VerticalServiceImplTest {
     void calculateCost_getWallTypeAndWidthMoreThan2000AndLessThan3000_ShouldReturnCorrectCostOfBlind
             (int width, int height, int type, String mountType, long expected) {
         blindVertical = new BlindVertical(width, height, type, mountType);
-        long actual = verticalService.calculateCost(blindVertical, propertiesMap.get("verticalCatalog"), propertiesMap.get("priceMount"), propertiesMap.get("dollarExchangeRate"));
+        long actual = verticalService.calculateCost(blindVertical, property.getValueProperties("verticalCatalog"), property.getValueProperties("priceMount"), property.getValueProperties("dollarExchangeRate"));
         assertEquals(expected, actual);
     }
 
@@ -64,7 +64,7 @@ class VerticalServiceImplTest {
     void calculateCost_getWallTypeAndWidthMoreThan3000_ShouldReturnCorrectCostOfBlind
             (int width, int height, int type, String mountType, long expected) {
         blindVertical = new BlindVertical(width, height, type, mountType);
-        long actual = verticalService.calculateCost(blindVertical, propertiesMap.get("verticalCatalog"), propertiesMap.get("priceMount"), propertiesMap.get("dollarExchangeRate"));
+        long actual = verticalService.calculateCost(blindVertical, property.getValueProperties("verticalCatalog"), property.getValueProperties("priceMount"), property.getValueProperties("dollarExchangeRate"));
         assertEquals(expected, actual);
     }
 
@@ -73,7 +73,7 @@ class VerticalServiceImplTest {
     void calculateCost_getWallType_ShouldReturnWrongCostOfBlind
             (int width, int height, int type, String mountType, long expected) {
         blindVertical = new BlindVertical(width, height, type, mountType);
-        long actual = verticalService.calculateCost(blindVertical, propertiesMap.get("verticalCatalog"), propertiesMap.get("priceMount"), propertiesMap.get("dollarExchangeRate"));
+        long actual = verticalService.calculateCost(blindVertical, property.getValueProperties("verticalCatalog"), property.getValueProperties("priceMount"), property.getValueProperties("dollarExchangeRate"));
         assertNotEquals(expected, actual);
     }
 
@@ -83,7 +83,7 @@ class VerticalServiceImplTest {
             (int width, int height, int type, String mountType) {
         blindVertical = new BlindVertical(width, height, type, mountType);
         Exception actualException = assertThrows(IllegalArgumentException.class,
-                () -> verticalService.calculateCost(blindVertical, propertiesMap.get("verticalCatalog"), propertiesMap.get("priceMount"), propertiesMap.get("dollarExchangeRate")));
+                () -> verticalService.calculateCost(blindVertical, property.getValueProperties("verticalCatalog"), property.getValueProperties("priceMount"), property.getValueProperties("dollarExchangeRate")));
         String expectedMessage = "width must be from 400 to 6000 and height must be from 200 to 4000";
         assertEquals(expectedMessage, actualException.getMessage());
     }
@@ -93,7 +93,7 @@ class VerticalServiceImplTest {
     void calculateCost_getHeightLessThan1500_ShouldReturnCorrectAreaOfBlind
             (int width, int height, int type, String mountType, double expected) {
         blindVertical = new BlindVertical(width, height, type, mountType);
-        verticalService.calculateCost(blindVertical, propertiesMap.get("verticalCatalog"), propertiesMap.get("priceMount"), propertiesMap.get("dollarExchangeRate"));
+        verticalService.calculateCost(blindVertical, property.getValueProperties("verticalCatalog"), property.getValueProperties("priceMount"), property.getValueProperties("dollarExchangeRate"));
         double actual = blindVertical.getAreaBlinds();
         assertEquals(expected, actual);
     }
@@ -103,7 +103,7 @@ class VerticalServiceImplTest {
     void calculateCost_getHeightMoreThan1500_ShouldReturnCorrectAreaOfBlind
             (int width, int height, int type, String mountType, double expected) {
         blindVertical = new BlindVertical(width, height, type, mountType);
-        verticalService.calculateCost(blindVertical, propertiesMap.get("verticalCatalog"), propertiesMap.get("priceMount"), propertiesMap.get("dollarExchangeRate"));
+        verticalService.calculateCost(blindVertical, property.getValueProperties("verticalCatalog"), property.getValueProperties("priceMount"), property.getValueProperties("dollarExchangeRate"));
         double actual = blindVertical.getAreaBlinds();
         assertEquals(expected, actual);
     }

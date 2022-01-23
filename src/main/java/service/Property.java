@@ -4,5 +4,6 @@ import java.util.Map;
 
 public interface Property {
 
-    Map<String, String> saveProperties(String fileProperties);
+    //    Map<String, String> saveProperties(String fileProperties);
+    String getValueProperties(String propertyName);
 }
