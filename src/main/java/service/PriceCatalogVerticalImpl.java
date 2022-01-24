@@ -7,7 +7,7 @@ public class PriceCatalogVerticalImpl implements PriceCatalogVertical {
     private Map<Integer, Double> typeMap;
     private DataReader dataReader;
 
-    public PriceCatalogVerticalImpl(DataReader dataReader/*, Property property*/) {
+    public PriceCatalogVerticalImpl(DataReader dataReader) {
         this.dataReader = dataReader;
     }
 

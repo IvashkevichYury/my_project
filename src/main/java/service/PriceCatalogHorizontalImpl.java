@@ -7,7 +7,7 @@ public class PriceCatalogHorizontalImpl implements PriceCatalogHorizontal {
     private Map<Integer, Double> colorMap;
     private DataReader dataReader;
 
-    public PriceCatalogHorizontalImpl(DataReader dataReader/*, Property property*/) {
+    public PriceCatalogHorizontalImpl(DataReader dataReader) {
         this.dataReader = dataReader;
     }
 

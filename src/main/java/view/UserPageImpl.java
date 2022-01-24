@@ -5,21 +5,26 @@ import model.BlindVertical;
 import service.*;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class UserPageImpl implements UserPage {
 
     private HorizontalService horizontalServiceImpl;
     private VerticalService verticalServiceImpl;
-    private Property property = new PropertyImpl();
     private DataWriter dataWriter = new DataWriterImpl();
-//    private Map<String, String> propertiesMap = new HashMap<>();
+    Properties properties = new Properties();
 
     public UserPageImpl(HorizontalService horizontalServiceImpl, VerticalService verticalServiceImpl) {
         this.horizontalServiceImpl = horizontalServiceImpl;
         this.verticalServiceImpl = verticalServiceImpl;
+        try {
+            properties.load(new FileInputStream(".\\src\\main\\resources\\application.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     Scanner scanner = new Scanner(System.in);
@@ -27,10 +32,12 @@ public class UserPageImpl implements UserPage {
 
     @Override
     public void showBlindCost() {
-//        propertiesMap = property.saveProperties(".\\src\\main\\resources\\application.properties");
-//        String fileName = propertiesMap.get("outputFile");
-        String fileName = property.getValueProperties("outputFile");
-        File file = new File(fileName);
+        String verticalCatalog = properties.getProperty("verticalCatalog");
+        String horizontalCatalog = properties.getProperty("horizontalCatalog");
+        String outputFile = properties.getProperty("outputFile");
+        String priceMount = properties.getProperty("priceMount");
+        String dollarExchangeRate = properties.getProperty("dollarExchangeRate");
+        File file = new File(outputFile);
         file.delete();
         while (true) {
             System.out.println("Would you like to calculate the cost of blinds?\nIf yes - enter Y, if no - enter N");
@@ -41,15 +48,13 @@ public class UserPageImpl implements UserPage {
                 String horizontalOrVertical = scannerStr.nextLine();
                 if (horizontalOrVertical.equalsIgnoreCase("H")) {
                     BlindHorizontal blindHorizontal = requestDataHorizontalBlind();
-//                    costBlinds = horizontalServiceImpl.calculateCost(blindHorizontal, propertiesMap.get("horizontalCatalog"), propertiesMap.get("dollarExchangeRate"));
-                    costBlinds = horizontalServiceImpl.calculateCost(blindHorizontal, property.getValueProperties("horizontalCatalog"), property.getValueProperties("dollarExchangeRate"));
+                    costBlinds = horizontalServiceImpl.calculateCost(blindHorizontal, horizontalCatalog, dollarExchangeRate);
                     blindHorizontal.setBlindsCost(costBlinds);
                     dataWriter.writeDataToList(blindHorizontal);
                     System.out.println("Horizontal blind costs " + costBlinds + " rubles.\n");
                 } else if (horizontalOrVertical.equalsIgnoreCase("V")) {
                     BlindVertical blindVertical = requestDataVerticalBlind();
-//                    costBlinds = verticalServiceImpl.calculateCost(blindVertical, propertiesMap.get("verticalCatalog"), propertiesMap.get("priceMount"), propertiesMap.get("dollarExchangeRate"));
-                    costBlinds = verticalServiceImpl.calculateCost(blindVertical, property.getValueProperties("verticalCatalog"), property.getValueProperties("priceMount"), property.getValueProperties("dollarExchangeRate"));
+                    costBlinds = verticalServiceImpl.calculateCost(blindVertical, verticalCatalog, priceMount, dollarExchangeRate);
                     blindVertical.setBlindsCost(costBlinds);
                     dataWriter.writeDataToList(blindVertical);
                     System.out.println("Vertical blind costs " + costBlinds + " rubles.\n");
@@ -58,7 +63,7 @@ public class UserPageImpl implements UserPage {
                 System.out.println("To save orders to a file, entered S");
                 String answerSave = scannerStr.nextLine();
                 if (answerSave.equalsIgnoreCase("S")) {
-                    dataWriter.writeDataToFile(fileName);
+                    dataWriter.writeDataToFile(outputFile);
                 }
                 System.out.println("Calculation finished.");
                 scannerStr.close();
