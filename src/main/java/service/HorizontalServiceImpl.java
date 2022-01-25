@@ -23,11 +23,11 @@ public class HorizontalServiceImpl implements HorizontalService {
     }
 
     @Override
-    public long calculateCost(BlindHorizontal blindHorizontal, String fileName, String fileNameExchangeRate) {
+    public long calculateCost(BlindHorizontal blindHorizontal) {
         double area = calculateArea(blindHorizontal.getWidth(), blindHorizontal.getHeight());
         blindHorizontal.setAreaBlinds(area);
-        double priceColor = priceCatalogHorizontal.getColorPrice(blindHorizontal.getColor(), fileName);
-        double dollarExchangeRate = exchangeRate.getDollarExchangeRate(fileNameExchangeRate);
+        double priceColor = priceCatalogHorizontal.getColorPrice(blindHorizontal.getColor());
+        double dollarExchangeRate = exchangeRate.getDollarExchangeRate();
         return Math.round(area * priceColor * dollarExchangeRate);
     }
 }

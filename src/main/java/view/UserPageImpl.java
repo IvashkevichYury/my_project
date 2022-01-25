@@ -5,9 +5,6 @@ import model.BlindVertical;
 import service.*;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
 import java.util.Scanner;
 
 public class UserPageImpl implements UserPage {
@@ -15,16 +12,12 @@ public class UserPageImpl implements UserPage {
     private HorizontalService horizontalServiceImpl;
     private VerticalService verticalServiceImpl;
     private DataWriter dataWriter = new DataWriterImpl();
-    Properties properties = new Properties();
+    String outputFile;
 
-    public UserPageImpl(HorizontalService horizontalServiceImpl, VerticalService verticalServiceImpl) {
+    public UserPageImpl(HorizontalService horizontalServiceImpl, VerticalService verticalServiceImpl, String outputFile) {
         this.horizontalServiceImpl = horizontalServiceImpl;
         this.verticalServiceImpl = verticalServiceImpl;
-        try {
-            properties.load(new FileInputStream(".\\src\\main\\resources\\application.properties"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.outputFile = outputFile;
     }
 
     Scanner scanner = new Scanner(System.in);
@@ -32,11 +25,6 @@ public class UserPageImpl implements UserPage {
 
     @Override
     public void showBlindCost() {
-        String verticalCatalog = properties.getProperty("verticalCatalog");
-        String horizontalCatalog = properties.getProperty("horizontalCatalog");
-        String outputFile = properties.getProperty("outputFile");
-        String priceMount = properties.getProperty("priceMount");
-        String dollarExchangeRate = properties.getProperty("dollarExchangeRate");
         File file = new File(outputFile);
         file.delete();
         while (true) {
@@ -48,13 +36,13 @@ public class UserPageImpl implements UserPage {
                 String horizontalOrVertical = scannerStr.nextLine();
                 if (horizontalOrVertical.equalsIgnoreCase("H")) {
                     BlindHorizontal blindHorizontal = requestDataHorizontalBlind();
-                    costBlinds = horizontalServiceImpl.calculateCost(blindHorizontal, horizontalCatalog, dollarExchangeRate);
+                    costBlinds = horizontalServiceImpl.calculateCost(blindHorizontal);
                     blindHorizontal.setBlindsCost(costBlinds);
                     dataWriter.writeDataToList(blindHorizontal);
                     System.out.println("Horizontal blind costs " + costBlinds + " rubles.\n");
                 } else if (horizontalOrVertical.equalsIgnoreCase("V")) {
                     BlindVertical blindVertical = requestDataVerticalBlind();
-                    costBlinds = verticalServiceImpl.calculateCost(blindVertical, verticalCatalog, priceMount, dollarExchangeRate);
+                    costBlinds = verticalServiceImpl.calculateCost(blindVertical);
                     blindVertical.setBlindsCost(costBlinds);
                     dataWriter.writeDataToList(blindVertical);
                     System.out.println("Vertical blind costs " + costBlinds + " rubles.\n");

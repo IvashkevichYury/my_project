@@ -2,8 +2,14 @@ package service;
 
 public class ExchangeRateImpl implements ExchangeRate {
 
+    private String fileNameExchangeRate;
+
+    public ExchangeRateImpl(String fileNameExchangeRate) {
+        this.fileNameExchangeRate = fileNameExchangeRate;
+    }
+
     @Override
-    public double getDollarExchangeRate(String fileName) {
-        return Double.parseDouble(fileName);
+    public double getDollarExchangeRate() {
+        return Double.parseDouble(fileNameExchangeRate);
     }
 }

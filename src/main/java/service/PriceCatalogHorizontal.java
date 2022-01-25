@@ -2,5 +2,5 @@ package service;
 
 public interface PriceCatalogHorizontal {
 
-    Double getColorPrice(int color, String fileName);
+    Double getColorPrice(int color);
 }

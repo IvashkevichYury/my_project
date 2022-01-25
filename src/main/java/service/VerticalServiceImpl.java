@@ -23,9 +23,9 @@ public class VerticalServiceImpl implements VerticalService {
         return (width / 1000.00) * (height / 1000.00);
     }
 
-    private double calculateCostOfMount(String mountType, int width, String fileNamePriceMount) {
+    private double calculateCostOfMount(String mountType, int width) {
         double costOfMount = 0;
-        double priceMount = priceCatalogVertical.getPriceMount(fileNamePriceMount);
+        double priceMount = priceCatalogVertical.getPriceMount();
         if (mountType.equalsIgnoreCase("ceiling")) {
             return costOfMount;
         } else if (mountType.equalsIgnoreCase("wall")) {
@@ -41,12 +41,12 @@ public class VerticalServiceImpl implements VerticalService {
     }
 
     @Override
-    public long calculateCost(BlindVertical blindVertical, String fileNameTypePrice, String fileNamePriceMount, String fileNameExchangeRate) {
+    public long calculateCost(BlindVertical blindVertical) {
         double area = calculateArea(blindVertical.getWidth(), blindVertical.getHeight());
         blindVertical.setAreaBlinds(area);
-        double priceType = priceCatalogVertical.getTypePrice(blindVertical.getType(), fileNameTypePrice);
-        double costOfMount = calculateCostOfMount(blindVertical.getMountType(), blindVertical.getWidth(), fileNamePriceMount);
-        double dollarExchangeRate = exchangeRate.getDollarExchangeRate(fileNameExchangeRate);
+        double priceType = priceCatalogVertical.getTypePrice(blindVertical.getType());
+        double costOfMount = calculateCostOfMount(blindVertical.getMountType(), blindVertical.getWidth());
+        double dollarExchangeRate = exchangeRate.getDollarExchangeRate();
         return Math.round(area * priceType * dollarExchangeRate + costOfMount * dollarExchangeRate);
     }
 
