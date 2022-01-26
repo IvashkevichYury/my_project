@@ -16,24 +16,24 @@ public class Property {
         }
     }
 
-    public String getPropertyHorizontalCatalog() {
+    public String getFileNameHorizontalCatalog() {
         return properties.getProperty("horizontalCatalog");
     }
 
-    public String getPropertyVerticalCatalog() {
+    public String getFileNameVerticalCatalog() {
         return properties.getProperty("verticalCatalog");
     }
 
-    public String getPropertyPriceMount() {
+    public String getFileNamePriceMount() {
         return properties.getProperty("priceMount");
     }
 
-    public String getPropertyDollarExchangeRate() {
+    public String getFileNameDollarExchangeRate() {
         return properties.getProperty("dollarExchangeRate");
     }
 
-    public String getPropertyOutputFile() {
-        return properties.getProperty("outputFile");
+    public String getFileNameOutput() {
+        return properties.getProperty("output");
     }
 
 }

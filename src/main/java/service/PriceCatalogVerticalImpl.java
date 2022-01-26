@@ -15,12 +15,12 @@ public class PriceCatalogVerticalImpl implements PriceCatalogVertical {
 
     @Override
     public double getPriceMount() {
-        return Double.parseDouble(property.getPropertyPriceMount());
+        return Double.parseDouble(property.getFileNamePriceMount());
     }
 
     @Override
     public Double getTypePrice(int type) {
-        typeMap = dataReader.readPricesFromFile(property.getPropertyVerticalCatalog());
+        typeMap = dataReader.readPricesFromFile(property.getFileNameVerticalCatalog());
         if (typeMap.get(type) == null) {
             throw new IllegalArgumentException("type must be 01, 02 or 03");
         }

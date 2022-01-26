@@ -10,6 +10,6 @@ public class ExchangeRateImpl implements ExchangeRate {
 
     @Override
     public double getDollarExchangeRate() {
-        return Double.parseDouble(property.getPropertyDollarExchangeRate());
+        return Double.parseDouble(property.getFileNameDollarExchangeRate());
     }
 }

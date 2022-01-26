@@ -25,7 +25,7 @@ public class UserPageImpl implements UserPage {
 
     @Override
     public void showBlindCost() {
-        File file = new File(property.getPropertyOutputFile());
+        File file = new File(property.getFileNameOutput());
         file.delete();
         while (true) {
             System.out.println("Would you like to calculate the cost of blinds?\nIf yes - enter Y, if no - enter N");
@@ -51,7 +51,7 @@ public class UserPageImpl implements UserPage {
                 System.out.println("To save orders to a file, entered S");
                 String answerSave = scannerStr.nextLine();
                 if (answerSave.equalsIgnoreCase("S")) {
-                    dataWriter.writeDataToFile(property.getPropertyOutputFile());
+                    dataWriter.writeDataToFile(property.getFileNameOutput());
                 }
                 System.out.println("Calculation finished.");
                 scannerStr.close();
