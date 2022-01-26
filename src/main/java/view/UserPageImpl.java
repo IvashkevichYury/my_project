@@ -13,13 +13,11 @@ public class UserPageImpl implements UserPage {
     private VerticalService verticalServiceImpl;
     private Property property;
     private DataWriter dataWriter = new DataWriterImpl();
-//    String outputFile;
 
-    public UserPageImpl(HorizontalService horizontalServiceImpl, VerticalService verticalServiceImpl, Property property/* String outputFile*/) {
+    public UserPageImpl(HorizontalService horizontalServiceImpl, VerticalService verticalServiceImpl, Property property) {
         this.horizontalServiceImpl = horizontalServiceImpl;
         this.verticalServiceImpl = verticalServiceImpl;
         this.property = property;
-//        this.outputFile = outputFile;
     }
 
     Scanner scanner = new Scanner(System.in);
@@ -27,7 +25,7 @@ public class UserPageImpl implements UserPage {
 
     @Override
     public void showBlindCost() {
-        File file = new File(property.getProperty("outputFile"));
+        File file = new File(property.getPropertyOutputFile());
         file.delete();
         while (true) {
             System.out.println("Would you like to calculate the cost of blinds?\nIf yes - enter Y, if no - enter N");
@@ -53,7 +51,7 @@ public class UserPageImpl implements UserPage {
                 System.out.println("To save orders to a file, entered S");
                 String answerSave = scannerStr.nextLine();
                 if (answerSave.equalsIgnoreCase("S")) {
-                    dataWriter.writeDataToFile(property.getProperty("outputFile"));
+                    dataWriter.writeDataToFile(property.getPropertyOutputFile());
                 }
                 System.out.println("Calculation finished.");
                 scannerStr.close();
