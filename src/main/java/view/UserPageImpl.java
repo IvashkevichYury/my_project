@@ -2,8 +2,9 @@ package view;
 
 import model.BlindHorizontal;
 import model.BlindVertical;
-import service.calculating.HorizontalService;
-import service.calculating.VerticalService;
+import service.blindService.DataSaver;
+import service.blindService.HorizontalService;
+import service.blindService.VerticalService;
 import service.fileService.DataWriter;
 import service.fileService.DataWriterImpl;
 import service.fileService.Property;
@@ -17,6 +18,7 @@ public class UserPageImpl implements UserPage {
     private VerticalService verticalServiceImpl;
     private Property property;
     private DataWriter dataWriter = new DataWriterImpl();
+    private DataSaver saver = new DataSaver();
 
     public UserPageImpl(HorizontalService horizontalServiceImpl, VerticalService verticalServiceImpl, Property property) {
         this.horizontalServiceImpl = horizontalServiceImpl;
@@ -42,20 +44,20 @@ public class UserPageImpl implements UserPage {
                     BlindHorizontal blindHorizontal = requestDataHorizontalBlind();
                     costBlinds = horizontalServiceImpl.calculateCost(blindHorizontal);
                     blindHorizontal.setBlindsCost(costBlinds);
-                    dataWriter.writeDataToList(blindHorizontal);
+                    saver.writeDataToList(blindHorizontal);
                     System.out.println("Horizontal blind costs " + costBlinds + " rubles.\n");
                 } else if (horizontalOrVertical.equalsIgnoreCase("V")) {
                     BlindVertical blindVertical = requestDataVerticalBlind();
                     costBlinds = verticalServiceImpl.calculateCost(blindVertical);
                     blindVertical.setBlindsCost(costBlinds);
-                    dataWriter.writeDataToList(blindVertical);
+                    saver.writeDataToList(blindVertical);
                     System.out.println("Vertical blind costs " + costBlinds + " rubles.\n");
                 }
             } else if (answer.equalsIgnoreCase("N")) {
                 System.out.println("To save orders to a file, entered S");
                 String answerSave = scannerStr.nextLine();
                 if (answerSave.equalsIgnoreCase("S")) {
-                    dataWriter.writeDataToFile(property.getFileNameOutput());
+                    dataWriter.writeDataToFile(saver.getBlinds(), property.getFileNameOutput());
                 }
                 System.out.println("Calculation finished.");
                 scannerStr.close();

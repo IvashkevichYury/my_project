@@ -2,9 +2,9 @@ package service.fileService;
 
 import model.Blind;
 
+import java.util.List;
+
 public interface DataWriter {
 
-    void writeDataToList(Blind blind);
-
-    void writeDataToFile(String fileName);
+    void writeDataToFile(List<Blind> blinds, String fileName);
 }

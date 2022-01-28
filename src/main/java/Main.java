@@ -1,9 +1,9 @@
 import model.BlindHorizontal;
 import model.BlindVertical;
-import service.calculating.HorizontalService;
-import service.calculating.HorizontalServiceImpl;
-import service.calculating.VerticalService;
-import service.calculating.VerticalServiceImpl;
+import service.blindService.HorizontalService;
+import service.blindService.HorizontalServiceImpl;
+import service.blindService.VerticalService;
+import service.blindService.VerticalServiceImpl;
 import service.catalog.*;
 import service.fileService.DataReader;
 import service.fileService.DataReaderImpl;

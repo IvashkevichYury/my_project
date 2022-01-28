@@ -1,4 +1,4 @@
-package service.calculating;
+package service.blindService;
 
 import model.BlindHorizontal;
 

@@ -1,8 +1,8 @@
 import model.BlindVertical;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import service.calculating.VerticalService;
-import service.calculating.VerticalServiceImpl;
+import service.blindService.VerticalService;
+import service.blindService.VerticalServiceImpl;
 import service.catalog.ExchangeRate;
 import service.catalog.ExchangeRateImpl;
 import service.catalog.PriceCatalogVertical;

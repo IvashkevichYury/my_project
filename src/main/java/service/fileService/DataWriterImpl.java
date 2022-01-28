@@ -6,25 +6,17 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DataWriterImpl implements DataWriter {
 
-    private List<Blind> orders = new ArrayList<>();
-
     @Override
-    public void writeDataToList(Blind blind) {
-        orders.add(blind);
-    }
-
-    @Override
-    public void writeDataToFile(String fileName) {
+    public void writeDataToFile(List<Blind> blinds, String fileName) {
         try (FileWriter writer = new FileWriter(fileName, true);
              BufferedWriter bufferedWriter = new BufferedWriter(writer);
              PrintWriter printWriter = new PrintWriter(bufferedWriter)) {
             printWriter.println("width,height,type,colorNumber,color,mountType,areaBlinds,blindsCost");
-            for (Blind order : orders) {
+            for (Blind order : blinds) {
                 printWriter.print(order.getWidth() + ",");
                 printWriter.print(order.getHeight() + ",");
                 if (order.getType() == 0) {
