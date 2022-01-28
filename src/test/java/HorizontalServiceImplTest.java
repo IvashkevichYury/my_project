@@ -55,7 +55,7 @@ class HorizontalServiceImplTest {
         blind = new BlindHorizontal(width, height, color);
         Exception actualException = assertThrows(IllegalArgumentException.class,
                 () -> horizontalBlindServiceImpl.calculateCost(blind));
-        String expectedMessage = "color must be 201 or 202";
+        String expectedMessage = "color number must be 201 or 202";
         assertEquals(expectedMessage, actualException.getMessage());
     }
 

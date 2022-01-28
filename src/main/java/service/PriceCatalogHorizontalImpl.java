@@ -17,7 +17,7 @@ public class PriceCatalogHorizontalImpl implements PriceCatalogHorizontal {
     public Double getColorPrice(int color) {
         colorMap = dataReader.readPricesFromFile(property.getFileNameHorizontalCatalog());
         if (colorMap.get(color) == null) {
-            throw new IllegalArgumentException("color must be 201 or 202");
+            throw new IllegalArgumentException("color number must be 201 or 202");
         }
         return colorMap.get(color);
     }

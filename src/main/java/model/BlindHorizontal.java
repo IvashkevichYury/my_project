@@ -4,17 +4,17 @@ public class BlindHorizontal extends Blind{
 
     private int width;
     private int height;
-    private int color;
+    private int colorNumber;
     private double areaBlinds;
     private long blindsCost;
 
     public BlindHorizontal() {
     }
 
-    public BlindHorizontal(int width, int height, int color) {
+    public BlindHorizontal(int width, int height, int colorNumber) {
         this.width = width;
         this.height = height;
-        this.color = color;
+        this.colorNumber = colorNumber;
     }
 
     public int getWidth() {
@@ -33,12 +33,12 @@ public class BlindHorizontal extends Blind{
         this.height = height;
     }
 
-    public int getColor() {
-        return color;
+    public int getColorNumber() {
+        return colorNumber;
     }
 
-    public void setColor(int color) {
-        this.color = color;
+    public void setColorNumber(int colorNumber) {
+        this.colorNumber = colorNumber;
     }
 
     public double getAreaBlinds() {
@@ -62,7 +62,7 @@ public class BlindHorizontal extends Blind{
         return "BlindHorizontal{" +
                 "width=" + width +
                 ", height=" + height +
-                ", color=" + color +
+                ", color=" + colorNumber +
                 ", areaBlinds=" + areaBlinds +
                 ", blindsCost=" + blindsCost +
                 '}';

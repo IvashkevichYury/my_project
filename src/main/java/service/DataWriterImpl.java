@@ -23,10 +23,32 @@ public class DataWriterImpl implements DataWriter {
         try (FileWriter writer = new FileWriter(fileName, true);
              BufferedWriter bufferedWriter = new BufferedWriter(writer);
              PrintWriter printWriter = new PrintWriter(bufferedWriter)) {
-            printWriter.println("width,height,color,type,mountType,blindsCost");
+            printWriter.println("width,height,type,colorNumber,color,mountType,areaBlinds,blindsCost");
             for (Blind order : orders) {
-                printWriter.print(order);
-                printWriter.println();
+                printWriter.print(order.getWidth() + ",");
+                printWriter.print(order.getHeight() + ",");
+                if (order.getType() == 0) {
+                    printWriter.print(",");
+                } else {
+                    printWriter.print(order.getType() + ",");
+                }
+                if (order.getColorNumber() == 0) {
+                    printWriter.print(",");
+                } else {
+                    printWriter.print(order.getColorNumber() + ",");
+                }
+                if (order.getColor() == null) {
+                    printWriter.print(",");
+                } else {
+                    printWriter.print(order.getColor() + ",");
+                }
+                if (order.getMountType() == null) {
+                    printWriter.print(",");
+                } else {
+                    printWriter.print(order.getMountType() + ",");
+                }
+                printWriter.print(order.getAreaBlinds() + ",");
+                printWriter.println(order.getBlindsCost());
             }
 
         } catch (IOException e) {

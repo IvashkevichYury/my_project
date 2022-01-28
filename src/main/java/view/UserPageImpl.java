@@ -68,7 +68,7 @@ public class UserPageImpl implements UserPage {
         System.out.println("Enter the height of the horizontal blind in mm:");
         blindHorizontal.setHeight(scanner.nextInt());
         System.out.println("Enter the color number of the horizontal blind (201, 202): ");
-        blindHorizontal.setColor(scanner.nextInt());
+        blindHorizontal.setColorNumber(scanner.nextInt());
         return blindHorizontal;
     }
 
