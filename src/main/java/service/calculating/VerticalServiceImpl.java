@@ -1,6 +1,8 @@
-package service;
+package service.calculating;
 
 import model.BlindVertical;
+import service.catalog.ExchangeRate;
+import service.catalog.PriceCatalogVertical;
 
 public class VerticalServiceImpl implements VerticalService {
 

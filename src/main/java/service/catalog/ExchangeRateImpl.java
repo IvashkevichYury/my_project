@@ -1,4 +1,6 @@
-package service;
+package service.catalog;
+
+import service.fileService.Property;
 
 public class ExchangeRateImpl implements ExchangeRate {
 

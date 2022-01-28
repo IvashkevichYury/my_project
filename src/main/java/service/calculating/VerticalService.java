@@ -1,4 +1,4 @@
-package service;
+package service.calculating;
 
 import model.BlindVertical;
 

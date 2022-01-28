@@ -1,6 +1,13 @@
 import model.BlindHorizontal;
 import model.BlindVertical;
-import service.*;
+import service.calculating.HorizontalService;
+import service.calculating.HorizontalServiceImpl;
+import service.calculating.VerticalService;
+import service.calculating.VerticalServiceImpl;
+import service.catalog.*;
+import service.fileService.DataReader;
+import service.fileService.DataReaderImpl;
+import service.fileService.Property;
 import view.UserPage;
 import view.UserPageImpl;
 

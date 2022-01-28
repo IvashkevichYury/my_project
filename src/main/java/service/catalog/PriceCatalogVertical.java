@@ -1,4 +1,4 @@
-package service;
+package service.catalog;
 
 public interface PriceCatalogVertical {
 

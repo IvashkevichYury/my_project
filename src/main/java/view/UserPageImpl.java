@@ -2,7 +2,11 @@ package view;
 
 import model.BlindHorizontal;
 import model.BlindVertical;
-import service.*;
+import service.calculating.HorizontalService;
+import service.calculating.VerticalService;
+import service.fileService.DataWriter;
+import service.fileService.DataWriterImpl;
+import service.fileService.Property;
 
 import java.io.File;
 import java.util.Scanner;

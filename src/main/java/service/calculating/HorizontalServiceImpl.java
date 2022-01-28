@@ -1,6 +1,8 @@
-package service;
+package service.calculating;
 
 import model.BlindHorizontal;
+import service.catalog.ExchangeRate;
+import service.catalog.PriceCatalogHorizontal;
 
 public class HorizontalServiceImpl implements HorizontalService {
 

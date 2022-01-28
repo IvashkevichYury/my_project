@@ -1,8 +1,15 @@
 import model.BlindHorizontal;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import service.*;
+import service.calculating.HorizontalService;
+import service.calculating.HorizontalServiceImpl;
+import service.catalog.ExchangeRate;
+import service.catalog.ExchangeRateImpl;
+import service.catalog.PriceCatalogHorizontal;
+import service.catalog.PriceCatalogHorizontalImpl;
+import service.fileService.DataReader;
+import service.fileService.DataReaderImpl;
+import service.fileService.Property;
 
 import static org.junit.jupiter.api.Assertions.*;
 

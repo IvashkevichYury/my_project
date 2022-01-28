@@ -1,4 +1,7 @@
-package service;
+package service.catalog;
+
+import service.fileService.DataReader;
+import service.fileService.Property;
 
 import java.util.Map;
 
