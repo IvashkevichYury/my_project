@@ -1,31 +1,22 @@
 package service.fileService;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class DataReaderImpl implements DataReader {
 
     @Override
     public Map<Integer, Double> readPricesFromFile(String fileName) {
         Map<Integer, Double> price = new HashMap<>();
-        File file = new File(fileName);
-
         try {
-            Scanner scanner = new Scanner(file);
-            scanner.nextLine();
-
-            while (scanner.hasNextLine()) {
-                String[] lines = scanner.nextLine().split(",", 2);
-                Arrays.stream(lines).forEach(s -> {
-                    price.putIfAbsent(Integer.parseInt(lines[0]), Double.parseDouble(lines[1]));
-                });
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Файл " + fileName + " не найден!");
+            price = Files.lines(Paths.get(fileName))
+                    .skip(1)
+                    .map(line -> line.split(","))
+                    .collect(Collectors.toMap(k -> Integer.parseInt(k[0]), v -> Double.parseDouble(v[1])));
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return price;
