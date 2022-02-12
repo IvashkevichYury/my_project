@@ -70,26 +70,112 @@ public class UserPageImpl implements UserPage {
     private BlindHorizontal requestDataHorizontalBlind() {
         BlindHorizontal blindHorizontal = new BlindHorizontal();
         System.out.println("Enter the width of the horizontal blind in mm: ");
-        blindHorizontal.setWidth(scanner.nextInt());
+        while (true) {
+            String line = scanner.nextLine();
+            if (!line.matches("^-?\\d+$") || Integer.parseInt(line) < 250 || Integer.parseInt(line) > 2700) {
+                System.out.println("You entered incorrect data, please enter again!");
+            } else {
+                blindHorizontal.setWidth(Integer.parseInt(line));
+                break;
+            }
+        }
         System.out.println("Enter the height of the horizontal blind in mm:");
-        blindHorizontal.setHeight(scanner.nextInt());
+        while (true) {
+            String line = scanner.nextLine();
+            if (!line.matches("^-?\\d+$") || Integer.parseInt(line) < 500 || Integer.parseInt(line) > 3000) {
+                System.out.println("You entered incorrect data, please enter again!");
+            } else {
+                blindHorizontal.setHeight(Integer.parseInt(line));
+                break;
+            }
+        }
         System.out.println("Enter the color number of the horizontal blind (201, 202): ");
-        blindHorizontal.setColorNumber(scanner.nextInt());
+        while (true) {
+            String line = scanner.nextLine();
+            if (!line.matches("^-?\\d+$") || Integer.parseInt(line) < 201 || Integer.parseInt(line) > 202) {
+                System.out.println("You entered incorrect data, please enter again!");
+            } else {
+                blindHorizontal.setColorNumber(Integer.parseInt(line));
+                break;
+            }
+        }
         return blindHorizontal;
     }
 
     private BlindVertical requestDataVerticalBlind() {
         BlindVertical blindVertical = new BlindVertical();
         System.out.println("Enter the width of the vertical blind in mm: ");
-        blindVertical.setWidth(scanner.nextInt());
+        int width;
+        while (true) {
+            String line = scanner.nextLine();
+            if (!line.matches("^-?\\d+$") || Integer.parseInt(line) < 400 || Integer.parseInt(line) > 6000) {
+                System.out.println("You entered incorrect data, please enter again!");
+            } else {
+                width = Integer.parseInt(line);
+                blindVertical.setWidth(width);
+                break;
+            }
+        }
         System.out.println("Enter the height of the vertical blind in mm:");
-        blindVertical.setHeight(scanner.nextInt());
+        int height;
+        while (true) {
+            String line = scanner.nextLine();
+            if (!line.matches("^-?\\d+$") || Integer.parseInt(line) < 200 || Integer.parseInt(line) > 4000) {
+                System.out.println("You entered incorrect data, please enter again!");
+            } else {
+                height = Integer.parseInt(line);
+                blindVertical.setHeight(height);
+                break;
+            }
+        }
         System.out.println("Enter the type of the vertical blind (01, 02, 03): ");
-        blindVertical.setType(scanner.nextInt());
+        int type;
+        while (true) {
+            String line = scanner.nextLine();
+            if (!line.matches("^-?\\d+$") || Integer.parseInt(line) < 1 || Integer.parseInt(line) > 3) {
+                System.out.println("You entered incorrect data, please enter again!");
+            } else {
+                type = Integer.parseInt(line);
+                blindVertical.setType(type);
+                break;
+            }
+        }
         System.out.println("Enter the color of the vertical blind (white, green, yellow, blue, beige): ");
-        blindVertical.setColor(scannerStr.nextLine());
+        String[] colors = {"white", "green", "yellow", "blue", "beige"};
+        String color;
+        while (true) {
+            color = scanner.nextLine();
+            int count = 0;
+            for (String s : colors) {
+                if (color.equalsIgnoreCase(s)) {
+                    count++;
+                }
+            }
+            if (color.matches("^-?\\d+$") || count == 0) {
+                System.out.println("You entered incorrect data, please enter again!");
+            } else {
+                blindVertical.setColor(color);
+                break;
+            }
+        }
         System.out.println("Enter the mount type of the vertical blind (ceiling, wall): ");
-        blindVertical.setMountType(scannerStr.nextLine());
+        String[] mounts = {"ceiling", "wall"};
+        String mount;
+        while (true) {
+            mount = scanner.nextLine();
+            int count = 0;
+            for (String s : mounts) {
+                if (mount.equalsIgnoreCase(s)) {
+                    count++;
+                }
+            }
+            if (mount.matches("^-?\\d+$") || count == 0) {
+                System.out.println("You entered incorrect data, please enter again!");
+            } else {
+                blindVertical.setMountType(mount);
+                break;
+            }
+        }
         return blindVertical;
     }
 }
