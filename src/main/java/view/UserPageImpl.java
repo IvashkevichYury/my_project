@@ -72,7 +72,7 @@ public class UserPageImpl implements UserPage {
         System.out.println("Enter the width of the horizontal blind in mm: ");
         while (true) {
             String line = scanner.nextLine();
-            if (!line.matches("^-?\\d+$") || Integer.parseInt(line) < 250 || Integer.parseInt(line) > 2700) {
+            if (!line.matches("^\\d{3,4}$") || Integer.parseInt(line) < 250 || Integer.parseInt(line) > 2700) {
                 System.out.println("You entered incorrect data, please enter again!");
             } else {
                 blindHorizontal.setWidth(Integer.parseInt(line));
@@ -82,7 +82,7 @@ public class UserPageImpl implements UserPage {
         System.out.println("Enter the height of the horizontal blind in mm:");
         while (true) {
             String line = scanner.nextLine();
-            if (!line.matches("^-?\\d+$") || Integer.parseInt(line) < 500 || Integer.parseInt(line) > 3000) {
+            if (!line.matches("^\\d{3,4}$") || Integer.parseInt(line) < 500 || Integer.parseInt(line) > 3000) {
                 System.out.println("You entered incorrect data, please enter again!");
             } else {
                 blindHorizontal.setHeight(Integer.parseInt(line));
@@ -92,7 +92,7 @@ public class UserPageImpl implements UserPage {
         System.out.println("Enter the color number of the horizontal blind (201, 202): ");
         while (true) {
             String line = scanner.nextLine();
-            if (!line.matches("^-?\\d+$") || Integer.parseInt(line) < 201 || Integer.parseInt(line) > 202) {
+            if (!line.matches("^\\d{3}$") || Integer.parseInt(line) < 201 || Integer.parseInt(line) > 202) {
                 System.out.println("You entered incorrect data, please enter again!");
             } else {
                 blindHorizontal.setColorNumber(Integer.parseInt(line));
@@ -108,7 +108,7 @@ public class UserPageImpl implements UserPage {
         int width;
         while (true) {
             String line = scanner.nextLine();
-            if (!line.matches("^-?\\d+$") || Integer.parseInt(line) < 400 || Integer.parseInt(line) > 6000) {
+            if (!line.matches("^\\d{3,4}$") || Integer.parseInt(line) < 400 || Integer.parseInt(line) > 6000) {
                 System.out.println("You entered incorrect data, please enter again!");
             } else {
                 width = Integer.parseInt(line);
@@ -120,7 +120,7 @@ public class UserPageImpl implements UserPage {
         int height;
         while (true) {
             String line = scanner.nextLine();
-            if (!line.matches("^-?\\d+$") || Integer.parseInt(line) < 200 || Integer.parseInt(line) > 4000) {
+            if (!line.matches("^\\d{3,4}$") || Integer.parseInt(line) < 200 || Integer.parseInt(line) > 4000) {
                 System.out.println("You entered incorrect data, please enter again!");
             } else {
                 height = Integer.parseInt(line);
@@ -132,7 +132,7 @@ public class UserPageImpl implements UserPage {
         int type;
         while (true) {
             String line = scanner.nextLine();
-            if (!line.matches("^-?\\d+$") || Integer.parseInt(line) < 1 || Integer.parseInt(line) > 3) {
+            if (!line.matches("^\\d{1,2}$") || Integer.parseInt(line) < 1 || Integer.parseInt(line) > 3) {
                 System.out.println("You entered incorrect data, please enter again!");
             } else {
                 type = Integer.parseInt(line);
@@ -151,7 +151,7 @@ public class UserPageImpl implements UserPage {
                     count++;
                 }
             }
-            if (color.matches("^-?\\d+$") || count == 0) {
+            if (count == 0) {
                 System.out.println("You entered incorrect data, please enter again!");
             } else {
                 blindVertical.setColor(color);
@@ -169,7 +169,7 @@ public class UserPageImpl implements UserPage {
                     count++;
                 }
             }
-            if (mount.matches("^-?\\d+$") || count == 0) {
+            if (count == 0) {
                 System.out.println("You entered incorrect data, please enter again!");
             } else {
                 blindVertical.setMountType(mount);
