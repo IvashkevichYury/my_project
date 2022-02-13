@@ -1,5 +1,12 @@
 package model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@Setter
+@Getter
 public class Blind {
     private int width;
     private int height;
@@ -10,35 +17,16 @@ public class Blind {
     private double areaBlinds;
     private long blindsCost;
 
-    public int getWidth() {
-        return width;
+    public Blind(int width, int height, int colorNumber) {
+        this.width = width;
+        this.height = height;
+        this.colorNumber = colorNumber;
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public int getColorNumber() {
-        return colorNumber;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public String getMountType() {
-        return mountType;
-    }
-
-    public double getAreaBlinds() {
-        return areaBlinds;
-    }
-
-    public long getBlindsCost() {
-        return blindsCost;
+    public Blind(int width, int height, int type, String mountType) {
+        this.width = width;
+        this.height = height;
+        this.type = type;
+        this.mountType = mountType;
     }
 }
