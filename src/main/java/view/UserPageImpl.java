@@ -29,7 +29,6 @@ public class UserPageImpl implements UserPage {
     }
 
     Scanner scanner = new Scanner(System.in);
-    Scanner scannerStr = new Scanner(System.in);
 
     @Override
     public void showBlindCost() {
@@ -37,11 +36,11 @@ public class UserPageImpl implements UserPage {
         file.delete();
         while (true) {
             System.out.println("Would you like to calculate the cost of blinds?\nIf yes - enter Y, if no - enter N");
-            String answer = scannerStr.nextLine();
+            String answer = scanner.nextLine();
             if (answer.equalsIgnoreCase("Y")) {
                 long costBlinds = 0;
                 System.out.println("Choose the type of blinds: horizontal (enter H) or vertical (enter V)");
-                String horizontalOrVertical = scannerStr.nextLine();
+                String horizontalOrVertical = scanner.nextLine();
                 if (horizontalOrVertical.equalsIgnoreCase("H")) {
                     BlindHorizontal blindHorizontal = requestDataHorizontalBlind();
                     costBlinds = horizontalServiceImpl.calculateCost(blindHorizontal);
@@ -57,12 +56,11 @@ public class UserPageImpl implements UserPage {
                 }
             } else if (answer.equalsIgnoreCase("N")) {
                 System.out.println("To save orders to a file, entered S");
-                String answerSave = scannerStr.nextLine();
+                String answerSave = scanner.nextLine();
                 if (answerSave.equalsIgnoreCase("S")) {
                     dataWriter.writeDataToFile(saver.getBlinds(), property.getFileNameOutput());
                 }
                 System.out.println("Calculation finished.");
-                scannerStr.close();
                 scanner.close();
                 break;
             }
