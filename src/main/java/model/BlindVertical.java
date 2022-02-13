@@ -7,9 +7,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
-public class BlindVertical extends Blind{
+public class BlindVertical extends Blind {
 
-    public BlindVertical(int width, int height, int type, String mountType) {
+    public BlindVertical(int width, int height, int type, MountType mountType) {
         super(width, height, type, mountType);
     }
 }

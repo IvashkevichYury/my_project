@@ -2,6 +2,8 @@ package view;
 
 import model.BlindHorizontal;
 import model.BlindVertical;
+import model.Color;
+import model.MountType;
 import service.blindService.DataSaver;
 import service.blindService.HorizontalService;
 import service.blindService.VerticalService;
@@ -140,39 +142,29 @@ public class UserPageImpl implements UserPage {
                 break;
             }
         }
-        System.out.println("Enter the color of the vertical blind (white, green, yellow, blue, beige): ");
-        String[] colors = {"white", "green", "yellow", "blue", "beige"};
-        String color;
+        System.out.println("Enter the color of the vertical blind (1(white), 2(green), 3(yellow), 4(blue), 5(beige)): ");
+        Color[] colors = Color.values();
+        int color;
         while (true) {
-            color = scanner.nextLine();
-            int count = 0;
-            for (String s : colors) {
-                if (color.equalsIgnoreCase(s)) {
-                    count++;
-                }
-            }
-            if (count == 0) {
+            String line = scanner.nextLine();
+            if (!line.matches("^\\d$") || Integer.parseInt(line) < 1 || Integer.parseInt(line) > 5) {
                 System.out.println("You entered incorrect data, please enter again!");
             } else {
-                blindVertical.setColor(color);
+                color = Integer.parseInt(line) - 1;
+                blindVertical.setColor(colors[color]);
                 break;
             }
         }
-        System.out.println("Enter the mount type of the vertical blind (ceiling, wall): ");
-        String[] mounts = {"ceiling", "wall"};
-        String mount;
+        System.out.println("Enter the mount type of the vertical blind (1(ceiling), 2(wall)): ");
+        MountType[] mountTypes = MountType.values();
+        int mount;
         while (true) {
-            mount = scanner.nextLine();
-            int count = 0;
-            for (String s : mounts) {
-                if (mount.equalsIgnoreCase(s)) {
-                    count++;
-                }
-            }
-            if (count == 0) {
+            String line = scanner.nextLine();
+            if (!line.matches("^\\d$") || Integer.parseInt(line) < 1 || Integer.parseInt(line) > 2) {
                 System.out.println("You entered incorrect data, please enter again!");
             } else {
-                blindVertical.setMountType(mount);
+                mount = Integer.parseInt(line) - 1;
+                blindVertical.setMountType(mountTypes[mount]);
                 break;
             }
         }

@@ -12,8 +12,8 @@ public class Blind {
     private int height;
     private int type;
     private int colorNumber;
-    private String color;
-    private String mountType;
+    private Color color;
+    private MountType mountType;
     private double areaBlinds;
     private long blindsCost;
 
@@ -23,7 +23,7 @@ public class Blind {
         this.colorNumber = colorNumber;
     }
 
-    public Blind(int width, int height, int type, String mountType) {
+    public Blind(int width, int height, int type, MountType mountType) {
         this.width = width;
         this.height = height;
         this.type = type;

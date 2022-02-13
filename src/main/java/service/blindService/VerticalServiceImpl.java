@@ -1,6 +1,7 @@
 package service.blindService;
 
 import model.BlindVertical;
+import model.MountType;
 import service.catalog.ExchangeRate;
 import service.catalog.PriceCatalogVertical;
 
@@ -25,12 +26,12 @@ public class VerticalServiceImpl implements VerticalService {
         return (width / 1000.00) * (height / 1000.00);
     }
 
-    private double calculateCostOfMount(String mountType, int width) {
+    private double calculateCostOfMount(MountType mountType, int width) {
         double costOfMount = 0;
         double priceMount = priceCatalogVertical.getPriceMount();
-        if (mountType.equalsIgnoreCase("ceiling")) {
+        if (mountType.equals(MountType.CEILING)) {
             return costOfMount;
-        } else if (mountType.equalsIgnoreCase("wall")) {
+        } else if (mountType.equals(MountType.WALL)) {
             if (width < 2000) {
                 costOfMount = priceMount * 2;
             } else if (width <= 3000) {
