@@ -73,7 +73,7 @@ public class UserPageImpl implements UserPage {
         while (true) {
             String line = scanner.nextLine();
             if (!line.matches("^\\d{3,4}$") || Integer.parseInt(line) < 250 || Integer.parseInt(line) > 2700) {
-                System.out.println("You entered incorrect data, please enter again!");
+                System.out.println("You entered incorrect data, please enter again!\nWidth should be from 250 to 2700 mm.");
             } else {
                 blindHorizontal.setWidth(Integer.parseInt(line));
                 break;
@@ -83,7 +83,7 @@ public class UserPageImpl implements UserPage {
         while (true) {
             String line = scanner.nextLine();
             if (!line.matches("^\\d{3,4}$") || Integer.parseInt(line) < 500 || Integer.parseInt(line) > 3000) {
-                System.out.println("You entered incorrect data, please enter again!");
+                System.out.println("You entered incorrect data, please enter again!\nHeight should be from 500 to 3000 mm.");
             } else {
                 blindHorizontal.setHeight(Integer.parseInt(line));
                 break;
@@ -109,7 +109,7 @@ public class UserPageImpl implements UserPage {
         while (true) {
             String line = scanner.nextLine();
             if (!line.matches("^\\d{3,4}$") || Integer.parseInt(line) < 400 || Integer.parseInt(line) > 6000) {
-                System.out.println("You entered incorrect data, please enter again!");
+                System.out.println("You entered incorrect data, please enter again!\nWidth should be from 400 to 6000 mm.");
             } else {
                 width = Integer.parseInt(line);
                 blindVertical.setWidth(width);
@@ -121,7 +121,7 @@ public class UserPageImpl implements UserPage {
         while (true) {
             String line = scanner.nextLine();
             if (!line.matches("^\\d{3,4}$") || Integer.parseInt(line) < 200 || Integer.parseInt(line) > 4000) {
-                System.out.println("You entered incorrect data, please enter again!");
+                System.out.println("You entered incorrect data, please enter again!\nHeight should be from 200 to 4000 mm.");
             } else {
                 height = Integer.parseInt(line);
                 blindVertical.setHeight(height);
