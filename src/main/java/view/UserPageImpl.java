@@ -6,6 +6,7 @@ import model.Color;
 import model.MountType;
 import service.blindService.DataSaver;
 import service.blindService.HorizontalService;
+import service.blindService.Validator;
 import service.blindService.VerticalService;
 import service.fileService.DataWriter;
 import service.fileService.DataWriterImpl;
@@ -21,6 +22,7 @@ public class UserPageImpl implements UserPage {
     private Property property;
     private DataWriter dataWriter = new DataWriterImpl();
     private DataSaver saver = new DataSaver();
+    private Validator validator = new Validator();
 
     public UserPageImpl(HorizontalService horizontalServiceImpl, VerticalService verticalServiceImpl, Property property) {
         this.horizontalServiceImpl = horizontalServiceImpl;
@@ -72,7 +74,7 @@ public class UserPageImpl implements UserPage {
         System.out.println("Enter the width of the horizontal blind in mm: ");
         while (true) {
             String line = scanner.nextLine();
-            if (!line.matches("^\\d{3,4}$") || Integer.parseInt(line) < 250 || Integer.parseInt(line) > 2700) {
+            if (validator.checkInputNumber(line, 250, 2700)) {
                 System.out.println("You entered incorrect data, please enter again!\nWidth should be from 250 to 2700 mm.");
             } else {
                 blindHorizontal.setWidth(Integer.parseInt(line));
@@ -82,7 +84,7 @@ public class UserPageImpl implements UserPage {
         System.out.println("Enter the height of the horizontal blind in mm:");
         while (true) {
             String line = scanner.nextLine();
-            if (!line.matches("^\\d{3,4}$") || Integer.parseInt(line) < 500 || Integer.parseInt(line) > 3000) {
+            if (validator.checkInputNumber(line, 500, 3000)) {
                 System.out.println("You entered incorrect data, please enter again!\nHeight should be from 500 to 3000 mm.");
             } else {
                 blindHorizontal.setHeight(Integer.parseInt(line));
@@ -92,7 +94,7 @@ public class UserPageImpl implements UserPage {
         System.out.println("Enter the color number of the horizontal blind (201, 202): ");
         while (true) {
             String line = scanner.nextLine();
-            if (!line.matches("^\\d{3}$") || Integer.parseInt(line) < 201 || Integer.parseInt(line) > 202) {
+            if (validator.checkInputNumber(line, 201, 202)) {
                 System.out.println("You entered incorrect data, please enter again!");
             } else {
                 blindHorizontal.setColorNumber(Integer.parseInt(line));
@@ -108,7 +110,7 @@ public class UserPageImpl implements UserPage {
         int width;
         while (true) {
             String line = scanner.nextLine();
-            if (!line.matches("^\\d{3,4}$") || Integer.parseInt(line) < 400 || Integer.parseInt(line) > 6000) {
+            if (validator.checkInputNumber(line, 400, 6000)) {
                 System.out.println("You entered incorrect data, please enter again!\nWidth should be from 400 to 6000 mm.");
             } else {
                 width = Integer.parseInt(line);
@@ -120,7 +122,7 @@ public class UserPageImpl implements UserPage {
         int height;
         while (true) {
             String line = scanner.nextLine();
-            if (!line.matches("^\\d{3,4}$") || Integer.parseInt(line) < 200 || Integer.parseInt(line) > 4000) {
+            if (validator.checkInputNumber(line, 200, 4000)) {
                 System.out.println("You entered incorrect data, please enter again!\nHeight should be from 200 to 4000 mm.");
             } else {
                 height = Integer.parseInt(line);
@@ -132,7 +134,7 @@ public class UserPageImpl implements UserPage {
         int type;
         while (true) {
             String line = scanner.nextLine();
-            if (!line.matches("^\\d{1,2}$") || Integer.parseInt(line) < 1 || Integer.parseInt(line) > 3) {
+            if (validator.checkInputNumber(line, 1, 3)) {
                 System.out.println("You entered incorrect data, please enter again!");
             } else {
                 type = Integer.parseInt(line);
@@ -145,7 +147,7 @@ public class UserPageImpl implements UserPage {
         int color;
         while (true) {
             String line = scanner.nextLine();
-            if (!line.matches("^\\d$") || Integer.parseInt(line) < 1 || Integer.parseInt(line) > 5) {
+            if (validator.checkInputNumber(line, 1, 5)) {
                 System.out.println("You entered incorrect data, please enter again!");
             } else {
                 color = Integer.parseInt(line) - 1;
@@ -158,7 +160,7 @@ public class UserPageImpl implements UserPage {
         int mount;
         while (true) {
             String line = scanner.nextLine();
-            if (!line.matches("^\\d$") || Integer.parseInt(line) < 1 || Integer.parseInt(line) > 2) {
+            if (validator.checkInputNumber(line, 1, 2)) {
                 System.out.println("You entered incorrect data, please enter again!");
             } else {
                 mount = Integer.parseInt(line) - 1;
