@@ -147,7 +147,7 @@ public class UserPageImpl implements UserPage {
         int color;
         while (true) {
             String line = scanner.nextLine();
-            if (validator.checkInputNumber(line, 1, 5)) {
+            if (validator.checkInputNumber(line, 1, colors.length)) {
                 System.out.println("You entered incorrect data, please enter again!");
             } else {
                 color = Integer.parseInt(line) - 1;
@@ -160,7 +160,7 @@ public class UserPageImpl implements UserPage {
         int mount;
         while (true) {
             String line = scanner.nextLine();
-            if (validator.checkInputNumber(line, 1, 2)) {
+            if (validator.checkInputNumber(line, 1, mountTypes.length)) {
                 System.out.println("You entered incorrect data, please enter again!");
             } else {
                 mount = Integer.parseInt(line) - 1;
