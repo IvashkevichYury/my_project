@@ -1,7 +1,13 @@
 import model.BlindVertical;
 import model.MountType;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Spy;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import service.blindService.VerticalService;
 import service.blindService.VerticalServiceImpl;
 import service.catalog.ExchangeRate;
@@ -14,13 +20,26 @@ import service.fileService.Property;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@ExtendWith(MockitoExtension.class)
 class VerticalServiceImplTest {
+
+    @Mock
     BlindVertical blindVertical;
-    DataReader dataReader = new DataReaderImpl();
-    Property property = new Property();
-    ExchangeRate exchangeRate = new ExchangeRateImpl(property);
-    PriceCatalogVertical priceCatalogVertical = new PriceCatalogVerticalImpl(dataReader, property);
-    VerticalService verticalService = new VerticalServiceImpl(blindVertical, priceCatalogVertical, exchangeRate);
+    @Mock
+    DataReader dataReader;
+    @Mock
+    Property property;
+    @Mock
+    ExchangeRate exchangeRate;
+    @Mock
+    PriceCatalogVertical priceCatalogVertical;
+    @InjectMocks
+    VerticalServiceImpl verticalService;
+//    DataReader dataReader = new DataReaderImpl();
+//    Property property = new Property();
+//    ExchangeRate exchangeRate = new ExchangeRateImpl(property);
+//    PriceCatalogVertical priceCatalogVertical = new PriceCatalogVerticalImpl(dataReader, property);
+//    VerticalService verticalService = new VerticalServiceImpl(blindVertical, priceCatalogVertical, exchangeRate);
 
     @ParameterizedTest
     @CsvSource({"3000, 3000, 01, CEILING, 1796", "2000, 2000, 02, CEILING, 882", "2000, 3000, 03, CEILING, 1377"})
