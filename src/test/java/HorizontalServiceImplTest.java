@@ -1,26 +1,40 @@
 import model.BlindHorizontal;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import service.blindService.HorizontalService;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import service.blindService.HorizontalServiceImpl;
 import service.catalog.ExchangeRate;
-import service.catalog.ExchangeRateImpl;
 import service.catalog.PriceCatalogHorizontal;
-import service.catalog.PriceCatalogHorizontalImpl;
 import service.fileService.DataReader;
-import service.fileService.DataReaderImpl;
-import service.fileService.Property;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 class HorizontalServiceImplTest {
 
+    @Mock
     BlindHorizontal blind;
-    DataReader dataReader = new DataReaderImpl();
-    Property property = new Property();
-    PriceCatalogHorizontal catalog = new PriceCatalogHorizontalImpl(dataReader, property);
-    ExchangeRate exchangeRate = new ExchangeRateImpl(property);
-    HorizontalService horizontalBlindServiceImpl = new HorizontalServiceImpl(blind, catalog, exchangeRate);
+    @Mock
+    DataReader dataReader;
+    @Mock
+    PriceCatalogHorizontal catalog;
+    @Mock
+    ExchangeRate exchangeRate;
+    @InjectMocks
+    HorizontalServiceImpl horizontalBlindServiceImpl;
+
+    @BeforeEach
+    void setUp() {
+        lenient().when(catalog.getColorPrice(201)).thenReturn(8.8);
+        lenient().when(catalog.getColorPrice(202)).thenReturn(10.4);
+        when(exchangeRate.getDollarExchangeRate()).thenReturn(15.0);
+    }
 
     @ParameterizedTest
     @CsvSource({"1500, 3000, 201, 594", "500, 2000, 202, 156"})
@@ -44,26 +58,6 @@ class HorizontalServiceImplTest {
         blind = new BlindHorizontal(width, height, color);
         long actual = horizontalBlindServiceImpl.calculateCost(blind);
         assertNotEquals(expected, actual);
-    }
-
-    @ParameterizedTest
-    @CsvSource({"1000, 0, 201", "0, 1000, 202", "-1000, 2000, 201", "500, -800, 202"})
-    void calculateCost_getZeroOrNegativeSizeOfBlind_ShouldThrowIllegalArgumentException(int width, int height, int color) {
-        blind = new BlindHorizontal(width, height, color);
-        Exception actualException = assertThrows(IllegalArgumentException.class,
-                () -> horizontalBlindServiceImpl.calculateCost(blind));
-        String expectedMessage = "width must be from 250 to 2700 and height must be from 500 to 3000";
-        assertEquals(expectedMessage, actualException.getMessage());
-    }
-
-    @ParameterizedTest
-    @CsvSource({"1000, 2000, 200", "500, 1000, 0", "500, 1500, -201"})
-    void calculateCost_getWrongColorOfBlind_ShouldThrowIllegalArgumentException(int width, int height, int color) {
-        blind = new BlindHorizontal(width, height, color);
-        Exception actualException = assertThrows(IllegalArgumentException.class,
-                () -> horizontalBlindServiceImpl.calculateCost(blind));
-        String expectedMessage = "color number must be 201 or 202";
-        assertEquals(expectedMessage, actualException.getMessage());
     }
 
     @ParameterizedTest

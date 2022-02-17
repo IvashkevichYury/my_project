@@ -1,45 +1,45 @@
 import model.BlindVertical;
 import model.MountType;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
-import service.blindService.VerticalService;
 import service.blindService.VerticalServiceImpl;
 import service.catalog.ExchangeRate;
-import service.catalog.ExchangeRateImpl;
 import service.catalog.PriceCatalogVertical;
-import service.catalog.PriceCatalogVerticalImpl;
 import service.fileService.DataReader;
-import service.fileService.DataReaderImpl;
 import service.fileService.Property;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class VerticalServiceImplTest {
 
     @Mock
-    BlindVertical blindVertical;
+    private BlindVertical blindVertical;
     @Mock
-    DataReader dataReader;
+    private DataReader dataReader;
     @Mock
-    Property property;
+    private Property property;
     @Mock
-    ExchangeRate exchangeRate;
+    private ExchangeRate exchangeRate;
     @Mock
-    PriceCatalogVertical priceCatalogVertical;
+    private PriceCatalogVertical priceCatalogVertical;
     @InjectMocks
-    VerticalServiceImpl verticalService;
-//    DataReader dataReader = new DataReaderImpl();
-//    Property property = new Property();
-//    ExchangeRate exchangeRate = new ExchangeRateImpl(property);
-//    PriceCatalogVertical priceCatalogVertical = new PriceCatalogVerticalImpl(dataReader, property);
-//    VerticalService verticalService = new VerticalServiceImpl(blindVertical, priceCatalogVertical, exchangeRate);
+    private VerticalServiceImpl verticalService;
+
+    @BeforeEach
+    void setUp() {
+        lenient().when(priceCatalogVertical.getTypePrice(1)).thenReturn(13.3);
+        lenient().when(priceCatalogVertical.getTypePrice(2)).thenReturn(14.7);
+        lenient().when(priceCatalogVertical.getTypePrice(3)).thenReturn(15.3);
+        when(priceCatalogVertical.getPriceMount()).thenReturn(0.27);
+        when(exchangeRate.getDollarExchangeRate()).thenReturn(15.0);
+    }
 
     @ParameterizedTest
     @CsvSource({"3000, 3000, 01, CEILING, 1796", "2000, 2000, 02, CEILING, 882", "2000, 3000, 03, CEILING, 1377"})
@@ -93,17 +93,6 @@ class VerticalServiceImplTest {
         blindVertical = new BlindVertical(width, height, type, mountType);
         long actual = verticalService.calculateCost(blindVertical);
         assertNotEquals(expected, actual);
-    }
-
-    @ParameterizedTest
-    @CsvSource({"0, 2000, 02, CEILING", "5000, -4000, 02, WALL", "100, 3000, 03, WALL"})
-    void calculateCost_getIncorrectSizeOfBlind_ShouldThrowIllegalArgumentException
-            (int width, int height, int type, MountType mountType) {
-        blindVertical = new BlindVertical(width, height, type, mountType);
-        Exception actualException = assertThrows(IllegalArgumentException.class,
-                () -> verticalService.calculateCost(blindVertical));
-        String expectedMessage = "width must be from 400 to 6000 and height must be from 200 to 4000";
-        assertEquals(expectedMessage, actualException.getMessage());
     }
 
     @ParameterizedTest
