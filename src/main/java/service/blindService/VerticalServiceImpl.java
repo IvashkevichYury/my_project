@@ -7,18 +7,25 @@ import service.catalog.PriceCatalogVertical;
 
 public class VerticalServiceImpl implements VerticalService {
 
+    private final int minWidth = 400;
+    private final int maxWidth = 6000;
+    private final int minHeight = 200;
+    private final int maxHeight = 4000;
     private BlindVertical blindVertical;
     private PriceCatalogVertical priceCatalogVertical;
     private ExchangeRate exchangeRate;
+    private Validator validator;
 
-    public VerticalServiceImpl(BlindVertical blindVertical, PriceCatalogVertical priceCatalogVertical, ExchangeRate exchangeRate) {
+    public VerticalServiceImpl(BlindVertical blindVertical, PriceCatalogVertical priceCatalogVertical,
+                               ExchangeRate exchangeRate, Validator validator) {
         this.blindVertical = blindVertical;
         this.priceCatalogVertical = priceCatalogVertical;
         this.exchangeRate = exchangeRate;
+        this.validator = validator;
     }
 
     private double calculateArea(int width, int height) {
-        if (width < 400 || width > 6000 || height < 200 || height > 4000) {
+        if (validator.checkInputSize(width, minWidth, maxWidth) || validator.checkInputSize(height, minHeight, maxHeight)) {
             throw new IllegalArgumentException("width must be from 400 to 6000 and height must be from 200 to 4000");
         } else if (height < 1500) {
             height = 1500;

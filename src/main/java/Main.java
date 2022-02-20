@@ -19,8 +19,8 @@ public class Main {
         ExchangeRate exchangeRate = new ExchangeRateImpl(property);
         PriceCatalogHorizontal priceCatalogHorizontalImpl = new PriceCatalogHorizontalImpl(dataReader, property);
         PriceCatalogVertical priceCatalogVerticalImpl = new PriceCatalogVerticalImpl(dataReader, property);
-        HorizontalService horizontalService = new HorizontalServiceImpl(blindHorizontal, priceCatalogHorizontalImpl, exchangeRate);
-        VerticalService verticalService = new VerticalServiceImpl(blindVertical, priceCatalogVerticalImpl, exchangeRate);
+        HorizontalService horizontalService = new HorizontalServiceImpl(blindHorizontal, priceCatalogHorizontalImpl, exchangeRate, validator);
+        VerticalService verticalService = new VerticalServiceImpl(blindVertical, priceCatalogVerticalImpl, exchangeRate, validator);
         UserPage userPageImpl = new UserPageImpl(horizontalService, verticalService, property, dataWriter, saver, validator);
         userPageImpl.showBlindCost();
 
