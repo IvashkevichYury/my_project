@@ -156,15 +156,14 @@ public class UserPageImpl implements UserPage {
             }
         }
         System.out.println("Enter the mount type of the vertical blind (1(ceiling), 2(wall)): ");
-        MountType[] mountTypes = MountType.values();
         int mount;
         while (true) {
             String line = scanner.nextLine();
-            if (validator.checkInputNumber(line, 1, mountTypes.length)) {
+            if (validator.checkInputNumber(line, 1, MountType.values().length)) {
                 System.out.println("You entered incorrect data, please enter again!");
             } else {
-                mount = Integer.parseInt(line) - 1;
-                blindVertical.setMountType(mountTypes[mount]);
+                mount = Integer.parseInt(line);
+                blindVertical.setMountType(MountType.getMountType(mount));
                 break;
             }
         }
