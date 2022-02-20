@@ -9,7 +9,6 @@ import service.blindService.HorizontalService;
 import service.blindService.Validator;
 import service.blindService.VerticalService;
 import service.fileService.DataWriter;
-import service.fileService.DataWriterImpl;
 import service.fileService.Property;
 
 import java.io.File;
@@ -20,14 +19,18 @@ public class UserPageImpl implements UserPage {
     private HorizontalService horizontalServiceImpl;
     private VerticalService verticalServiceImpl;
     private Property property;
-    private DataWriter dataWriter = new DataWriterImpl();
-    private DataSaver saver = new DataSaver();
-    private Validator validator = new Validator();
+    private DataWriter dataWriter;
+    private DataSaver saver;
+    private Validator validator;
 
-    public UserPageImpl(HorizontalService horizontalServiceImpl, VerticalService verticalServiceImpl, Property property) {
+    public UserPageImpl(HorizontalService horizontalServiceImpl, VerticalService verticalServiceImpl,
+                        Property property, DataWriter dataWriter, DataSaver saver, Validator validator) {
         this.horizontalServiceImpl = horizontalServiceImpl;
         this.verticalServiceImpl = verticalServiceImpl;
         this.property = property;
+        this.dataWriter = dataWriter;
+        this.saver = saver;
+        this.validator = validator;
     }
 
     Scanner scanner = new Scanner(System.in);
