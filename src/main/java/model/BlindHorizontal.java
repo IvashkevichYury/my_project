@@ -1,5 +1,6 @@
 package model;
 
+import com.opencsv.bean.CsvBindByName;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,9 +8,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
-public class BlindHorizontal extends Blind{
+public class BlindHorizontal extends Blind {
+
+    @CsvBindByName
+    private int colorNumber;
 
     public BlindHorizontal(int width, int height, int colorNumber) {
-        super(width, height, colorNumber);
+        super(width, height);
+        this.colorNumber = colorNumber;
     }
 }

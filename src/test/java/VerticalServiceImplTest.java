@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import service.blindService.Validator;
 import service.blindService.VerticalServiceImpl;
 import service.catalog.ExchangeRate;
 import service.catalog.PriceCatalogVertical;
@@ -29,6 +30,8 @@ class VerticalServiceImplTest {
     private ExchangeRate exchangeRate;
     @Mock
     private PriceCatalogVertical priceCatalogVertical;
+    @Mock
+    private Validator validator;
     @InjectMocks
     private VerticalServiceImpl verticalService;
 

@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import service.blindService.HorizontalServiceImpl;
+import service.blindService.Validator;
 import service.catalog.ExchangeRate;
 import service.catalog.PriceCatalogHorizontal;
 import service.fileService.DataReader;
@@ -26,6 +27,8 @@ class HorizontalServiceImplTest {
     PriceCatalogHorizontal catalog;
     @Mock
     ExchangeRate exchangeRate;
+    @Mock
+    Validator validator;
     @InjectMocks
     HorizontalServiceImpl horizontalBlindServiceImpl;
 

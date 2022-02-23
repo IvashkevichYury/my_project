@@ -1,19 +1,29 @@
 package service.blindService;
 
-import model.Blind;
+import model.BlindHorizontal;
+import model.BlindVertical;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DataSaver {
 
-    private List<Blind> blinds = new ArrayList<>();
+    private List<BlindHorizontal> blindHorizontalList = new ArrayList<>();
+    private List<BlindVertical> blindVerticalList = new ArrayList<>();
 
-    public void writeDataToList(Blind blind) {
-        blinds.add(blind);
+    public void writeBlindHorizontalToList(BlindHorizontal blindHorizontal) {
+        blindHorizontalList.add(blindHorizontal);
     }
 
-    public List<Blind> getBlinds() {
-        return blinds;
+    public void writeBlindVerticalToList(BlindVertical blindVertical) {
+        blindVerticalList.add(blindVertical);
+    }
+
+    public List<BlindHorizontal> getBlindHorizontalList() {
+        return blindHorizontalList;
+    }
+
+    public List<BlindVertical> getBlindVerticalList() {
+        return blindVerticalList;
     }
 }

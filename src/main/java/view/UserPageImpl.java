@@ -11,7 +11,6 @@ import service.blindService.VerticalService;
 import service.fileService.DataWriter;
 import service.fileService.Property;
 
-import java.io.File;
 import java.util.Scanner;
 
 public class UserPageImpl implements UserPage {
@@ -37,8 +36,6 @@ public class UserPageImpl implements UserPage {
 
     @Override
     public void showBlindCost() {
-        File file = new File(property.getFileNameOutput());
-        file.delete();
         while (true) {
             System.out.println("Would you like to calculate the cost of blinds?\nIf yes - enter Y, if no - enter N");
             String answer = scanner.nextLine();
@@ -50,20 +47,20 @@ public class UserPageImpl implements UserPage {
                     BlindHorizontal blindHorizontal = requestDataHorizontalBlind();
                     costBlinds = horizontalServiceImpl.calculateCost(blindHorizontal);
                     blindHorizontal.setBlindsCost(costBlinds);
-                    saver.writeDataToList(blindHorizontal);
+                    saver.writeBlindHorizontalToList(blindHorizontal);
                     System.out.println("Horizontal blind costs " + costBlinds + " rubles.\n");
                 } else if (horizontalOrVertical.equalsIgnoreCase("V")) {
                     BlindVertical blindVertical = requestDataVerticalBlind();
                     costBlinds = verticalServiceImpl.calculateCost(blindVertical);
                     blindVertical.setBlindsCost(costBlinds);
-                    saver.writeDataToList(blindVertical);
+                    saver.writeBlindVerticalToList(blindVertical);
                     System.out.println("Vertical blind costs " + costBlinds + " rubles.\n");
                 }
             } else if (answer.equalsIgnoreCase("N")) {
                 System.out.println("To save orders to a file, entered S");
                 String answerSave = scanner.nextLine();
                 if (answerSave.equalsIgnoreCase("S")) {
-                    dataWriter.writeDataToFile(saver.getBlinds(), property.getFileNameOutput());
+                    dataWriter.writeDataToFile(saver.getBlindHorizontalList(), saver.getBlindVerticalList());
                 }
                 System.out.println("Calculation finished.");
                 scanner.close();
