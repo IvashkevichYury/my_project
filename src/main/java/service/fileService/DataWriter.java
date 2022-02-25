@@ -1,11 +1,10 @@
 package service.fileService;
 
-import model.BlindHorizontal;
-import model.BlindVertical;
+import model.Blind;
 
 import java.util.List;
 
 public interface DataWriter {
 
-    void writeDataToFile(List<BlindHorizontal> blindHorizontalList, List<BlindVertical> blindVerticalList);
+    void writeDataToFile(List<? extends Blind> blind);
 }
