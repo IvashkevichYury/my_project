@@ -24,7 +24,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>Main</mainClass>
+                            <mainClass>Calculator</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

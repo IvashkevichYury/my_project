@@ -6,7 +6,7 @@ import service.fileService.*;
 import view.UserPage;
 import view.UserPageImpl;
 
-public class Main {
+public class Calculator {
     public static void main(String[] args) {
 
         BlindHorizontal blindHorizontal = new BlindHorizontal();
