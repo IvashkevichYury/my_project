@@ -104,7 +104,7 @@ class VerticalServiceImplTest {
             (int width, int height, int type, MountType mountType, double expected) {
         blindVertical = new BlindVertical(width, height, type, mountType);
         verticalService.calculateCost(blindVertical);
-        double actual = blindVertical.getAreaBlinds();
+        double actual = blindVertical.getArea();
         assertEquals(expected, actual);
     }
 
@@ -114,7 +114,7 @@ class VerticalServiceImplTest {
             (int width, int height, int type, MountType mountType, double expected) {
         blindVertical = new BlindVertical(width, height, type, mountType);
         verticalService.calculateCost(blindVertical);
-        double actual = blindVertical.getAreaBlinds();
+        double actual = blindVertical.getArea();
         assertEquals(expected, actual);
     }
 }

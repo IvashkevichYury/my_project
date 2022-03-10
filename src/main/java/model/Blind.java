@@ -10,15 +10,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @Setter
 @Getter
-public class Blind {
+public abstract class Blind {
     @CsvBindByName
     private int width;
     @CsvBindByName
     private int height;
     @CsvBindByName
-    private double areaBlinds;
+    private double area;
     @CsvBindByName
-    private long blindsCost;
+    private long cost;
 
     public Blind(int width, int height) {
         this.width = width;

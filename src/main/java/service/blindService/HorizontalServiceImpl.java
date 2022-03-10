@@ -34,7 +34,7 @@ public class HorizontalServiceImpl implements HorizontalService {
     @Override
     public long calculateCost(BlindHorizontal blindHorizontal) {
         double area = calculateArea(blindHorizontal.getWidth(), blindHorizontal.getHeight());
-        blindHorizontal.setAreaBlinds(area);
+        blindHorizontal.setArea(area);
         double priceColor = priceCatalogHorizontal.getColorPrice(blindHorizontal.getColorNumber());
         double dollarExchangeRate = exchangeRate.getDollarExchangeRate();
         return Math.round(area * priceColor * dollarExchangeRate);

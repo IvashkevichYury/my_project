@@ -48,13 +48,13 @@ public class UserPageImpl implements UserPage {
                 if (horizontalOrVertical.equalsIgnoreCase("H")) {
                     BlindHorizontal blindHorizontal = requestDataHorizontalBlind();
                     costBlinds = horizontalServiceImpl.calculateCost(blindHorizontal);
-                    blindHorizontal.setBlindsCost(costBlinds);
+                    blindHorizontal.setCost(costBlinds);
                     saver.writeBlindHorizontalToList(blindHorizontal);
                     System.out.println("Horizontal blind costs " + costBlinds + " rubles.\n");
                 } else if (horizontalOrVertical.equalsIgnoreCase("V")) {
                     BlindVertical blindVertical = requestDataVerticalBlind();
                     costBlinds = verticalServiceImpl.calculateCost(blindVertical);
-                    blindVertical.setBlindsCost(costBlinds);
+                    blindVertical.setCost(costBlinds);
                     saver.writeBlindVerticalToList(blindVertical);
                     System.out.println("Vertical blind costs " + costBlinds + " rubles.\n");
                 }

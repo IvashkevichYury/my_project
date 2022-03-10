@@ -68,7 +68,7 @@ class HorizontalServiceImplTest {
     void calculateCost_getWidthAndHeight_ShouldReturnAreaOfBlindMoreThan075(int width, int height, int color, double expected) {
         blind = new BlindHorizontal(width, height, color);
         horizontalBlindServiceImpl.calculateCost(blind);
-        double actual = blind.getAreaBlinds();
+        double actual = blind.getArea();
         assertEquals(expected, actual);
     }
 
@@ -77,7 +77,7 @@ class HorizontalServiceImplTest {
     void calculateCost_getWidthAndHeight_ShouldReturnAreaOfBlindLessThan075(int width, int height, int color, double expected) {
         blind = new BlindHorizontal(width, height, color);
         horizontalBlindServiceImpl.calculateCost(blind);
-        double actual = blind.getAreaBlinds();
+        double actual = blind.getArea();
         assertEquals(expected, actual);
     }
 }

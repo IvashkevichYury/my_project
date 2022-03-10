@@ -53,7 +53,7 @@ public class VerticalServiceImpl implements VerticalService {
     @Override
     public long calculateCost(BlindVertical blindVertical) {
         double area = calculateArea(blindVertical.getWidth(), blindVertical.getHeight());
-        blindVertical.setAreaBlinds(area);
+        blindVertical.setArea(area);
         double priceType = priceCatalogVertical.getTypePrice(blindVertical.getType());
         double costOfMount = calculateCostOfMount(blindVertical.getMountType(), blindVertical.getWidth());
         double dollarExchangeRate = exchangeRate.getDollarExchangeRate();
