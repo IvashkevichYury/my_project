@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class PriceCatalogVerticalImpl implements PriceCatalogVertical {
 
-    private Map<Integer, Double> typeMap;
+    private Map<Integer, Double> priceByType;
     private DataReader dataReader;
     private Property property;
 
@@ -23,10 +23,11 @@ public class PriceCatalogVerticalImpl implements PriceCatalogVertical {
 
     @Override
     public Double getTypePrice(int type) {
-        typeMap = dataReader.readPricesFromFile(property.getFileNameVerticalCatalog());
-        if (typeMap.get(type) == null) {
+        priceByType = dataReader.readPricesFromFile(property.getFileNameVerticalCatalog());
+        Double priceType = priceByType.get(type);
+        if (priceType == null) {
             throw new IllegalArgumentException("type must be 01, 02 or 03");
         }
-        return typeMap.get(type);
+        return priceType;
     }
 }
