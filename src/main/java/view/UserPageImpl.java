@@ -145,8 +145,11 @@ public class UserPageImpl implements UserPage {
                 break;
             }
         }
-        System.out.println("Enter the color of the vertical blind (1(white), 2(green), 3(yellow), 4(blue), 5(beige)): ");
+        System.out.println("Enter the color of the vertical blind: ");
         Color[] colors = Color.values();
+        for (Color color : colors) {
+            System.out.println((color.ordinal() + 1) + " - " + color);
+        }
         int color;
         while (true) {
             String line = scanner.nextLine();
@@ -158,7 +161,10 @@ public class UserPageImpl implements UserPage {
                 break;
             }
         }
-        System.out.println("Enter the mount type of the vertical blind (1(ceiling), 2(wall)): ");
+        System.out.println("Enter the mount type of the vertical blind: ");
+        for (MountType mountType : MountType.values()) {
+            System.out.println((mountType.ordinal() + 1) + " - " + mountType);
+        }
         int mount;
         while (true) {
             String line = scanner.nextLine();
