@@ -11,6 +11,10 @@ public class VerticalServiceImpl implements VerticalService {
     private final int maxWidth = 6000;
     private final int minHeight = 200;
     private final int maxHeight = 4000;
+    private final int minHeightForCalculation = 1500;
+    private final double converter = 1000;
+    private final int firstWidth = 2000;
+    private final int secondWidth = 3000;
     private BlindVertical blindVertical;
     private PriceCatalogVertical priceCatalogVertical;
     private ExchangeRate exchangeRate;
@@ -26,11 +30,12 @@ public class VerticalServiceImpl implements VerticalService {
 
     private double calculateArea(int width, int height) {
         if (validator.checkInputSize(width, minWidth, maxWidth) || validator.checkInputSize(height, minHeight, maxHeight)) {
-            throw new IllegalArgumentException("width must be from 400 to 6000 and height must be from 200 to 4000");
-        } else if (height < 1500) {
-            height = 1500;
+            throw new IllegalArgumentException("width must be from " + minWidth + " to " + maxWidth + " and" +
+                    " height must be from " + minHeight + " to " + maxHeight);
+        } else if (height < minHeightForCalculation) {
+            height = minHeightForCalculation;
         }
-        return (width / 1000.00) * (height / 1000.00);
+        return (width / converter) * (height / converter);
     }
 
     private double calculateCostOfMount(MountType mountType, int width) {
@@ -39,9 +44,9 @@ public class VerticalServiceImpl implements VerticalService {
         if (mountType.equals(MountType.CEILING)) {
             return costOfMount;
         } else if (mountType.equals(MountType.WALL)) {
-            if (width < 2000) {
+            if (width < firstWidth) {
                 costOfMount = priceMount * 2;
-            } else if (width <= 3000) {
+            } else if (width <= secondWidth) {
                 costOfMount = priceMount * 3;
             } else {
                 costOfMount = priceMount * 4;

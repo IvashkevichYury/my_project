@@ -10,6 +10,8 @@ public class HorizontalServiceImpl implements HorizontalService {
     private final int maxWidth = 2700;
     private final int minHeight = 500;
     private final int maxHeight = 3000;
+    private final double minArea = 0.75;
+    private final double converter = 1000;
     private BlindHorizontal blindHorizontal;
     private PriceCatalogHorizontal priceCatalogHorizontal;
     private ExchangeRate exchangeRate;
@@ -25,9 +27,10 @@ public class HorizontalServiceImpl implements HorizontalService {
 
     private double calculateArea(int width, int height) {
         if (validator.checkInputSize(width, minWidth, maxWidth) || validator.checkInputSize(height, minHeight, maxHeight)) {
-            throw new IllegalArgumentException("width must be from 250 to 2700 and height must be from 500 to 3000");
+            throw new IllegalArgumentException("width must be from " + minWidth + " to " + maxWidth + " " +
+                    "and height must be from " + minHeight + " to " + maxHeight);
         } else {
-            return Math.max((width / 1000.00) * (height / 1000.00), 0.75);
+            return Math.max((width / converter) * (height / converter), minArea);
         }
     }
 
