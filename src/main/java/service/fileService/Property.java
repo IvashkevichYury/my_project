@@ -2,6 +2,8 @@ package service.fileService;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 public class Property {
@@ -33,7 +35,9 @@ public class Property {
     }
 
     public String getFileNameOutput() {
-        return properties.getProperty("output");
+        Date date = new Date();
+        SimpleDateFormat formatDate = new SimpleDateFormat("yyyy.MM.dd_hh.mm");
+        return properties.getProperty("output") + formatDate.format(date) + ".csv";
     }
 
 }

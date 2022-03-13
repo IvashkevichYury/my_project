@@ -18,18 +18,16 @@ public class UserPageImpl implements UserPage {
     private HorizontalService horizontalServiceImpl;
     private VerticalService verticalServiceImpl;
     private Property property;
-    private DataWriter dataHorizontalWriter;
-    private DataWriter dataVerticalWriter;
+    private DataWriter dataWriter;
     private DataSaver saver;
     private Validator validator;
 
     public UserPageImpl(HorizontalService horizontalServiceImpl, VerticalService verticalServiceImpl,
-                        Property property, DataWriter dataHorizontalWriter, DataWriter dataVerticalWriter, DataSaver saver, Validator validator) {
+                        Property property, DataWriter dataWriter, DataSaver saver, Validator validator) {
         this.horizontalServiceImpl = horizontalServiceImpl;
         this.verticalServiceImpl = verticalServiceImpl;
         this.property = property;
-        this.dataHorizontalWriter = dataHorizontalWriter;
-        this.dataVerticalWriter = dataVerticalWriter;
+        this.dataWriter = dataWriter;
         this.saver = saver;
         this.validator = validator;
     }
@@ -62,8 +60,8 @@ public class UserPageImpl implements UserPage {
                 System.out.println("To save orders to a file, entered S");
                 String answerSave = scanner.nextLine();
                 if (answerSave.equalsIgnoreCase("S")) {
-                    dataHorizontalWriter.writeDataToFile(saver.getBlindHorizontalList());
-                    dataVerticalWriter.writeDataToFile(saver.getBlindVerticalList());
+                    dataWriter.writeDataToFile(saver.getBlindHorizontalList());
+                    dataWriter.writeDataToFile(saver.getBlindVerticalList());
                 }
                 System.out.println("Calculation finished.");
                 scanner.close();

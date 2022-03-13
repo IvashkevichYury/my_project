@@ -13,8 +13,7 @@ public class Calculator {
         BlindVertical blindVertical = new BlindVertical();
         Property property = new Property();
         DataReader dataReader = new DataReaderImpl();
-        DataWriter dataHorizontalWriter = new DataHorizontalWriterImpl();
-        DataWriter dataVerticalWriter = new DataVerticalWriterImpl();
+        DataWriter dataWriter = new DataWriter(property);
         DataSaver saver = new DataSaver();
         Validator validator = new Validator();
         ExchangeRate exchangeRate = new ExchangeRateImpl(property);
@@ -22,7 +21,7 @@ public class Calculator {
         PriceCatalogVertical priceCatalogVerticalImpl = new PriceCatalogVerticalImpl(dataReader, property);
         HorizontalService horizontalService = new HorizontalServiceImpl(blindHorizontal, priceCatalogHorizontalImpl, exchangeRate, validator);
         VerticalService verticalService = new VerticalServiceImpl(blindVertical, priceCatalogVerticalImpl, exchangeRate, validator);
-        UserPage userPageImpl = new UserPageImpl(horizontalService, verticalService, property, dataHorizontalWriter, dataVerticalWriter, saver, validator);
+        UserPage userPageImpl = new UserPageImpl(horizontalService, verticalService, property, dataWriter, saver, validator);
         userPageImpl.showBlindCost();
 
     }
