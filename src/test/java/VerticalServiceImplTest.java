@@ -14,8 +14,10 @@ import service.catalog.PriceCatalogVertical;
 import service.fileService.DataReader;
 import service.fileService.Property;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class VerticalServiceImplTest {
@@ -117,4 +119,5 @@ class VerticalServiceImplTest {
         double actual = blindVertical.getArea();
         assertEquals(expected, actual);
     }
+
 }

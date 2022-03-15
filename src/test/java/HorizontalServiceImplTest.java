@@ -12,7 +12,8 @@ import service.catalog.ExchangeRate;
 import service.catalog.PriceCatalogHorizontal;
 import service.fileService.DataReader;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
